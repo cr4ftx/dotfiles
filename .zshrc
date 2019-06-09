@@ -66,7 +66,6 @@ plugins=(
   git
   sudo
   npm
-  tmux
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -100,10 +99,18 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Load aliases
+if [ -f ~/.aliases ]; then
+    . ~/.aliases
+fi
+
+# Load nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# Add deno to PATH
 export PATH=$PATH:$HOME/.deno/bin
 
+# Load fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

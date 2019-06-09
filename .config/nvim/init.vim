@@ -29,6 +29,11 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 Plug 'mattn/emmet-vim'
 
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+
+Plug 'rust-lang/rust.vim'
+
 call plug#end()
 
 " Plugin config
@@ -40,7 +45,11 @@ let g:NERDTreeQuitOnOpen=1
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,jsx,tsx,vue EmmetInstall
 
+let g:rustfmt_autosave = 1
+
 " Keymapping
+
+nnoremap <C-P> :Files<CR>
 
 " dont use arrowkeys
 noremap <Up> <NOP>
