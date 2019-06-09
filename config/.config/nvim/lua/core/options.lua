@@ -1,0 +1,23 @@
+vim.g.mapleader = " "
+
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.hlsearch = false
+vim.opt.hidden = true
+vim.opt.signcolumn = "yes"
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.wrap = false
+vim.opt.iskeyword = vim.opt.iskeyword + "-"
+vim.opt.clipboard = "unnamedplus"
+vim.opt.undofile = true
+vim.opt.termguicolors = true
+vim.opt.updatetime = 300
+vim.opt.laststatus = 3
+vim.opt.swapfile = false
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.pumheight = 20
+vim.opt.showmode = false
+vim.opt.mouse = ""

@@ -1,0 +1,5 @@
+.uuid
+.DS_Store
+config/.oh-my-zsh
+config/.tmux
+**/*/lazy-lock.json

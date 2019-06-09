@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [[ "$OSTYPE" != "darwin"* ]]; then
+    alias rm="mv -t /tmp"
+fi
+
+# Override vi and vim
+alias v="nvim"
+alias vi="nvim"
+alias vim="nvim"
+
+# Missing from zsh git plugin
+alias gdf="git difftool"
+
+alias lg=lazygit

@@ -1,0 +1,28 @@
+{
+    "neoconf": {
+        "import": {
+            "vscode": true,
+            "coc": false,
+            "nlsp": false
+        }
+    },
+    "lspconfig": {
+        "lua_ls": {
+            "Lua.workspace.checkThirdParty": false,
+            "Lua.completion.callSnippet": "Replace",
+            "Lua.format.enable": false
+        },
+        "tsserver": {
+            "javascript.format.enable": false,
+            "javascript.suggest.completeFunctionCalls": true,
+            "typescript.format.enable": false,
+            "typescript.suggest.completeFunctionCalls": true
+        },
+        "jsonls": {
+            "json.format.enable": false,
+            "json.validate.enable": true
+        },
+        "html": { "html.format.enable": false },
+        "yamlls": { "yaml.format.enable": false }
+    }
+}
