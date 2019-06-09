@@ -1,0 +1,19 @@
+[core]
+	editor = nvim
+[user]
+	email = swann.castel@hotmail.fr
+	name = Swann Castel
+[difftool]
+	prompt = true
+[diff]
+	tool = nvimdiff
+[difftool "nvimdiff"]
+	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[mergetool]
+    prompt = true
+[merge]
+    tool = nvimdiff
+[mergetool "nvimdiff"]
+    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[pull]
+    rebase = true
