@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
 alias rm="mv -t /tmp"
+alias vi="nvim"
 alias vim="nvim"
