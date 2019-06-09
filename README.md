@@ -1,9 +1,9 @@
 # Dotfiles
 
-First dotfiles ever
+My first dotfiles ever
 
 ## Before
 
 ```bash
-sudo apt intall vim neovim zsh tmux powerline-fonts && chsh -s /bin/zsh
+sudo apt install git vim neovim zsh tmux powerline-fonts && chsh -s /bin/zsh
 ```
