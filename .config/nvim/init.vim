@@ -15,6 +15,8 @@ set ai
 set si
 set smarttab
 
+set clipboard=unnamed
+
 " Plugins
 
 call plug#begin()
@@ -40,15 +42,18 @@ Plug 'terryma/vim-multiple-cursors'
 
 Plug 'w0rp/ale'
 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
 call plug#end()
 
 " Plugin config
 
 call neomake#configure#automake('w')
 
-let NERDTreeShowHidden=1
+let NERDTreeShowHidden = 1
 map <silent> <C-s> :NERDTreeToggle<CR>
-let g:NERDTreeQuitOnOpen=1
+let g:NERDTreeQuitOnOpen = 1
 
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,jsx,tsx,vue EmmetInstall
@@ -62,6 +67,8 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \}
+
+let g:airline_theme = 'ravenpower'
 
 " Keymapping
 
