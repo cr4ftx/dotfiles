@@ -13,5 +13,5 @@ sudo apt install curl git vim neovim zsh tmux fonts-powerline
 ## TODO
 
 * learn vim -_-
-* other vim plugins (ale, YouCompleteMe...)
+* other vim plugins (YouCompleteMe...)
 * tmux config
