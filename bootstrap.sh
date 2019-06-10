@@ -31,7 +31,7 @@ function doInstall() {
 	curl -fsSL https://deno.land/x/install/install.sh | sh
 }
 
-all() {
+doAll() {
     doInstall
     doSync
 }
