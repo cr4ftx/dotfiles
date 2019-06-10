@@ -10,25 +10,44 @@ function doSync() {
 
 function doInstall() {
 	# oh-my-zsh
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	if [ -z $ZSH ]; then
+		echo exit | sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	else
+		echo "Skipping Oh My Zsh installation"
+	fi
 
 	# plug-vim
-	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
+	if [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]; then
+		curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+			https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	else
+		echo "Skipping Plug Vim installation"
+	fi
 	nvim +PlugClean! +qall
 	nvim +silent +PlugInstall +qall
 
 	# rustup
-	curl https://sh.rustup.rs -sSf | sh
-	rustup component add rustfmt
-	rustup component add clippy
+	if [ ! -d $HOME/.cargo ]; then
+		curl https://sh.rustup.rs -sSf | sh
+		rustup component add rustfmt
+		rustup component add clippy
+	else
+		echo "Skipping rustup installation"
+	fi
 
 	# nvm
-	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+	if [ -z $NVM_DIR ]; then
+		curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+	else
+		echo "Skipping NVM installation"
+	fi
 
 	# deno
-	curl -fsSL https://deno.land/x/install/install.sh | sh
+	if [ ! -d $HOME/.deno ]; then
+		curl -fsSL https://deno.land/x/install/install.sh | sh
+	else
+		echo "Skipping Deno installation"
+	fi
 }
 
 doAll() {
