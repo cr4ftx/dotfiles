@@ -45,6 +45,8 @@ Plug 'w0rp/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'tpope/vim-fugitive'
+
 call plug#end()
 
 " Plugin config
