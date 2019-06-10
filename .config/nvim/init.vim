@@ -8,7 +8,8 @@ set ttyfast
 set lazyredraw
 
 set cursorline
-set number
+set nu
+set rnu
 set nowrap
 
 set ai
@@ -47,6 +48,8 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'tpope/vim-fugitive'
 
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+
 call plug#end()
 
 " Plugin config
@@ -71,6 +74,27 @@ let g:ale_fixers = {
 \}
 
 let g:airline_theme = 'ravenpower'
+
+let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_max_num_candidates = 20
+let g:ycm_max_num_identifier_candidates = 10
+let g:ycm_filetype_blacklist = {
+\	'tagbar': 1,
+\	'qf': 1,
+\	'notes': 1,
+\	'markdown': 1,
+\	'unite': 1,
+\	'text': 1,
+\	'vimwiki': 1,
+\	'pandoc': 1,
+\	'infolog': 1,
+\	'mail': 1
+\}
+let g:ycm_filepath_blacklist = {
+\	'html': 1,
+\	'jsx': 1,
+\	'xml': 1,
+\}
 
 " Keymapping
 
