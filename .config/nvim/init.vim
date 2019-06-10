@@ -19,6 +19,8 @@ set smarttab
 
 call plug#begin()
 
+Plug 'neomake/neomake'
+
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'pangloss/vim-javascript'
@@ -34,18 +36,32 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'rust-lang/rust.vim'
 
+Plug 'terryma/vim-multiple-cursors'
+
+Plug 'w0rp/ale'
+
 call plug#end()
 
 " Plugin config
 
+call neomake#configure#automake('w')
+
 let NERDTreeShowHidden=1
-map <silent> <C-n> :NERDTreeToggle<CR>
+map <silent> <C-s> :NERDTreeToggle<CR>
 let g:NERDTreeQuitOnOpen=1
 
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,jsx,tsx,vue EmmetInstall
 
 let g:rustfmt_autosave = 1
+
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\}
 
 " Keymapping
 
