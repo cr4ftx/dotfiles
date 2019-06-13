@@ -50,6 +50,8 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
+Plug 'posva/vim-vue'
+
 call plug#end()
 
 " Plugin config
