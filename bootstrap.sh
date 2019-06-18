@@ -51,43 +51,26 @@ function doInstall() {
 	fi
 }
 
-doAll() {
-    doInstall
-    doSync
-}
-
-doHelp() {
-    echo "Usage: $(basename "$0") [options]" >&2
+usage() {
+    echo "Usage: $(basename "$0") [flags]" >&2
     echo
-	echo "   -i, --install          Install extra software (oh-my-zsh, rustup, nvm, deno...)"
-    echo "   -s, --sync             Synchronizes dotfiles to home directory"
-    echo "   -a, --all              Does all of the above"
+	echo "   -i           Install extra software (oh-my-zsh, rustup, plug-vim, deno...)"
+    echo "   -s           Synchronizes dotfiles to home directory"
+    echo "   -u           Update neovim plugins"
     echo
     exit 1
 }
 
 if [ $# -eq 0 ]; then
-    doHelp
+    usage
 else
-    for i in "$@"
+	while getopts "isu" option
     do
-        case $i in
-            -i|--install)
-                doInstall
-                shift
-                ;;
-            -s|--sync)
-                doSync
-                shift
-                ;;
-            -a|--all)
-                doAll
-                shift
-                ;;
-            *)
-                doHelp
-                shift
-                ;;
+        case $option in
+            i) doInstall;;
+            s) doSync;;
+			u) nvim +PlugUpdate +qall;;
+            *) usage;;
         esac
     done
 fi
