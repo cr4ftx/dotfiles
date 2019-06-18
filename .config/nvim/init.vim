@@ -52,6 +52,8 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 Plug 'posva/vim-vue'
 
+Plug 'tpope/vim-surround'
+
 call plug#end()
 
 " Plugin config
