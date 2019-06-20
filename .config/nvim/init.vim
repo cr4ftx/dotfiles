@@ -1,62 +1,44 @@
-" Config
+" Config ---------------------------------------------------------------------
 
 set encoding=utf-8
 set fileencoding=utf-8
 syntax on
-
 set ttyfast
 set lazyredraw
-
 set cursorline
 set nu
 set rnu
 set nowrap
-
 set ai
 set si
 set smarttab
-
 set clipboard=unnamed
 
-" Plugins
+" Plugins --------------------------------------------------------------------
 
 call plug#begin()
 
 Plug 'neomake/neomake'
-
 Plug 'editorconfig/editorconfig-vim'
-
 Plug 'pangloss/vim-javascript'
-
 Plug 'leafgarland/typescript-vim'
-
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-
 Plug 'mattn/emmet-vim'
-
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-
 Plug 'rust-lang/rust.vim'
-
 Plug 'terryma/vim-multiple-cursors'
-
 Plug 'w0rp/ale'
-
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
 Plug 'tpope/vim-fugitive'
-
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-
 Plug 'posva/vim-vue'
-
 Plug 'tpope/vim-surround'
 
 call plug#end()
 
-" Plugin config
+" Plugin config --------------------------------------------------------------
 
 call neomake#configure#automake('w')
 
@@ -100,16 +82,17 @@ let g:ycm_filepath_blacklist = {
 \	'xml': 1,
 \}
 
-" Keymapping
+" Keymapping -----------------------------------------------------------------
 
+" Fuzzy find
 nnoremap <C-P> :Files<CR>
 
+" Thanks Lucas F. Costa for the advice
 " dont use arrowkeys
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
-
 " really, just dont
 inoremap <Up>    <NOP>
 inoremap <Down>  <NOP>

@@ -64,8 +64,7 @@ usage() {
 if [ $# -eq 0 ]; then
     usage
 else
-    while getopts "isu" option
-    do
+    while getopts "isu" option; do
         case $option in
             i) doInstall;;
             s) doSync;;

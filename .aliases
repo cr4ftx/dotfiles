@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# Prevent annoying rm -rf
 alias rm="mv -t /tmp"
+
+# Override vi and vim
 alias vi="nvim"
 alias vim="nvim"
+
+# Missing from zsh git plugin
+alias gdf="git difftool"
