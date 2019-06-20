@@ -14,7 +14,5 @@ sudo apt install curl git vim neovim zsh tmux fonts-powerline
 
 ## TODO
 
-* tmux config
-* switch to powerlevel10k
 * improve Vim skills
 * git config ?
