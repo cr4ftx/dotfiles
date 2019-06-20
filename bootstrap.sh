@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-function doSync() {
+doSync() {
     rsync --exclude ".git/" \
         --exclude "README.md" \
         --exclude "bootstrap.sh" \
@@ -8,13 +8,20 @@ function doSync() {
         -avh --no-perms . ~;
 }
 
-function doInstall() {
+doInstall() {
     # oh-my-zsh
     if [ -z $ZSH ]; then
         echo exit | sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-        git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+        git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
     else
         echo "Skipping Oh My Zsh installation"
+    fi
+
+    # Tmux Plugin Manager
+    if [ ! -d ~/.tmux/plugins/tpm ]; then
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    else
+        echo "Skipping TPM installation"
     fi
 
     # plug-vim
