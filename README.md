@@ -12,6 +12,10 @@ sudo apt update
 sudo apt install curl git vim neovim zsh tmux fonts-powerline
 ```
 
+## Installation
+
+$ `./bootstrap.sh -is`
+
 ## TODO
 
 * improve Vim skills
