@@ -14,7 +14,10 @@ sudo apt install curl git vim neovim zsh tmux fonts-powerline
 
 ## Installation
 
-$ `./bootstrap.sh -is`
+```bash
+git clone https://github.com/swanncastel/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles && ./bootstrap.sh -is
+```
 
 ## TODO
 
