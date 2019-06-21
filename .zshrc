@@ -5,7 +5,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
 
-plugins=(git sudo npm)
+plugins=(git sudo)
 
 source $ZSH/oh-my-zsh.sh
 
