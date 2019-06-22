@@ -23,3 +23,4 @@ cd ~/.dotfiles && ./bootstrap.sh -is
 
 * improve Vim skills
 * git config ?
+* test installation from scratch
