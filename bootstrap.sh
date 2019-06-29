@@ -26,8 +26,6 @@ installPlugVim() {
     else
         echo "Plug Vim is already installed"
     fi
-    nvim +PlugClean! +qall
-    nvim +silent +PlugInstall +qall
 }
 
 installRustup() {
@@ -77,6 +75,9 @@ doSync() {
         --exclude "bootstrap.sh" \
         --exclude ".editorconfig" \
         -avh --no-perms . ~;
+
+    nvim +PlugClean! +qa
+    nvim +silent +PlugInstall +qa
 }
 
 usage() {
@@ -96,7 +97,7 @@ else
         case $option in
             i) doInstall;;
             s) doSync;;
-            u) nvim +PlugUpdate +qall;;
+            u) nvim +PlugUpdate +qa;;
             \?) usage;;
         esac
     done
