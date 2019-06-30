@@ -9,8 +9,12 @@
 ```bash
 sudo add-apt-repository ppa:neovim-ppa/stable
 sudo apt update
-sudo apt install curl git vim neovim zsh tmux fonts-powerline
+sudo apt install curl git neovim zsh tmux fonts-powerline
 ```
+
+[Follow YouCompleMe instructions](https://github.com/ycm-core/YouCompleteMe#linux-64-bit)
+
+[Color theme for GNOME terminal](https://github.com/arcticicestudio/nord-gnome-terminal#installation)
 
 ## Installation
 
