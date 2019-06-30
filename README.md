@@ -1,10 +1,8 @@
 # Dotfiles
 
-> My first dotfiles ever
-
 ![Dotfiles](./dotfiles.png "Screenshot of this dotfiles")
 
-## Prerequisite
+## Prerequisites
 
 ### Ubuntu / Debian
 
@@ -13,8 +11,6 @@ sudo add-apt-repository ppa:neovim-ppa/stable
 sudo apt update
 sudo apt install curl git neovim zsh tmux fonts-powerline
 ```
-
-[Follow YouCompleMe instructions](https://github.com/ycm-core/YouCompleteMe#linux-64-bit)
 
 [Color theme for GNOME terminal](https://github.com/arcticicestudio/nord-gnome-terminal#installation)
 
@@ -25,8 +21,11 @@ git clone https://github.com/swanncastel/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles && ./bootstrap.sh -is
 ```
 
+[Follow ycm instructions](https://github.com/ycm-core/YouCompleteMe#linux-64-bit)
+
+To use fzf outside of Vim
+`~/.fzf/install`
+
 ## TODO
 
-* improve Vim skills
-* git config ?
-* test installation from scratch
+* Key bindings for ycm GoTo, Refacto, FixIt...
