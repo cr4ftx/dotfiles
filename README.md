@@ -1,5 +1,7 @@
 # Dotfiles
 
+> Greatly inspired by [Lucas F. Costa](https://github.com/lucasfcosta/dotfiles)
+
 ![Dotfiles](./dotfiles.png "Screenshot of this dotfiles")
 
 ## Prerequisites
@@ -25,6 +27,25 @@ cd ~/.dotfiles && ./bootstrap.sh -is
 
 To use fzf outside of Vim
 `~/.fzf/install`
+
+## Key bindings
+
+#### Git
+
+* [See oh-my-zsh git plugin](https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git/#aliases)
+* gdf = git difftool
+
+#### Tmux
+
+* Prefix has been changed for Ctrl+a
+* [See tmux-pain-control](https://github.com/tmux-plugins/tmux-pain-control#bindings)
+* [See tmux-sensible](https://github.com/tmux-plugins/tmux-sensible#key-bindings)
+
+#### Vim
+
+* <Ctrl+s> NERDTreeToggle
+* <Ctrl+p> Fuzzy find
+* <Ctrl+n> Start mulicursor
 
 ## TODO
 
