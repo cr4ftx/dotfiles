@@ -33,6 +33,7 @@ installRustup() {
 
     if [[ ! -d $HOME/.cargo && $REPLY =~ ^[yY]$ ]]; then
         curl https://sh.rustup.rs -sSf | sh
+        . $HOME/.cargo/env
         rustup component add rustfmt
         rustup component add clippy
     else
