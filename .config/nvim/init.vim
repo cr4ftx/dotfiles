@@ -29,15 +29,15 @@ Plug 'junegunn/fzf.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'w0rp/ale'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'itchyny/lightline.vim'
+Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --ts-completer --rust-completer' }
 Plug 'posva/vim-vue'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-gitgutter'
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
@@ -62,8 +62,6 @@ let g:ale_fixers = {
 \   'javascript': ['eslint', 'prettier'],
 \}
 
-let g:airline_theme = 'ravenpower'
-
 let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_max_num_candidates = 20
 let g:ycm_max_num_identifier_candidates = 10
@@ -84,6 +82,11 @@ let g:ycm_filepath_blacklist = {
 \	'jsx': 1,
 \	'xml': 1,
 \}
+
+let g:lightline = {
+\   'colorscheme': 'nord',
+\}
+colorscheme nord
 
 " Keymapping -----------------------------------------------------------------
 
