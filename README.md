@@ -2,6 +2,8 @@
 
 > My first dotfiles ever
 
+![Dotfiles](./dotfiles.png "Screenshot of this dotfiles")
+
 ## Prerequisite
 
 ### Ubuntu / Debian

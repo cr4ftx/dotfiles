@@ -75,6 +75,7 @@ doSync() {
         --exclude "README.md" \
         --exclude "bootstrap.sh" \
         --exclude ".editorconfig" \
+        --exclude "dotfiles.png" \
         -avh --no-perms . ~;
 
     nvim +PlugClean! +qa
