@@ -47,6 +47,13 @@ To use fzf outside of Vim
 * <Ctrl+p> Fuzzy find
 * <Ctrl+n> Start mulicursor
 
-## TODO
+#### Ycm
 
-* Key bindings for ycm GoTo, Refacto, FixIt...
+* <Ctrl+y><Ctrl+d> -> YcmCompleter GetDoc
+* <Ctrl+y><Ctrl+g> -> YcmCompleter GoTo
+* <Ctrl+y><Ctrl+r> -> YcmCompleter RefactorRename
+* <Ctrl+y><Ctrl+t> -> YcmCompleter GetType
+
+#### Emmet
+
+<Ctrl+y>,

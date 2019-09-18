@@ -93,6 +93,12 @@ colorscheme nord
 
 " Keymapping -----------------------------------------------------------------
 
+" Ycm
+noremap <C-Y><C-D> :YcmCompleter GetDoc<CR>
+noremap <C-Y><C-G> :YcmCompleter GoTo<CR>
+noremap <C-Y><C-R> :YcmCompleter RefactorRename<space>
+noremap <C-Y><C-T> :YcmCompleter GetType<CR>
+
 " Fuzzy find
 nnoremap <C-P> :Files<CR>
 
