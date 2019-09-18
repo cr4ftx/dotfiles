@@ -52,7 +52,7 @@ map <silent> <C-s> :NERDTreeToggle<CR>
 let g:NERDTreeQuitOnOpen = 1
 
 let g:user_emmet_install_global = 0
-autocmd FileType html,css,jsx,tsx,vue EmmetInstall
+autocmd FileType html,css,javascript,typescript,vue EmmetInstall
 
 let g:rustfmt_autosave = 1
 
