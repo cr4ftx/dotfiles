@@ -13,6 +13,8 @@ set ai
 set si
 set smarttab
 set clipboard=unnamed
+set shiftwidth=2
+autocmd FileType make setlocal shiftwidth=4 tabstop=4
 
 " Plugins --------------------------------------------------------------------
 
