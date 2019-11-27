@@ -33,22 +33,22 @@ To use fzf outside of Vim
 
 #### Tmux
 
-* Prefix has been changed for Ctrl+a
+* Prefix has been changed to <Ctrl+a>
 * [See tmux-pain-control](https://github.com/tmux-plugins/tmux-pain-control#bindings)
 * [See tmux-sensible](https://github.com/tmux-plugins/tmux-sensible#key-bindings)
 
 #### Vim
 
-* <Ctrl+s> NERDTreeToggle
-* <Ctrl+p> Fuzzy find
-* <Ctrl+n> Start mulicursor
+* <Ctrl+s> -> Toggle NERDTree
+* <Ctrl+p> -> Fuzzy find
+* <Ctrl+n> -> Start mulicursor
 
 #### Ycm
 
-* <Ctrl+y><Ctrl+d> -> YcmCompleter GetDoc
-* <Ctrl+y><Ctrl+g> -> YcmCompleter GoTo
-* <Ctrl+y><Ctrl+r> -> YcmCompleter RefactorRename
-* <Ctrl+y><Ctrl+t> -> YcmCompleter GetType
+* <Ctrl+y><Ctrl+d> -> :YcmCompleter GetDoc
+* <Ctrl+y><Ctrl+g> -> :YcmCompleter GoTo
+* <Ctrl+y><Ctrl+r> -> :YcmCompleter RefactorRename
+* <Ctrl+y><Ctrl+t> -> :YcmCompleter GetType
 
 #### Emmet
 

@@ -45,7 +45,9 @@ installNvm() {
     read -p "Install nvm [yN] ?"
 
     if [[ ! -d $HOME/.nvm && $REPLY =~ ^[yY]$ ]]; then
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
+        source $HOME/.nvm/nvm.sh
+        nvm install 12
     else
         echo "Skipping NVM installation"
     fi

@@ -41,6 +41,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-gitgutter'
 Plug 'arcticicestudio/nord-vim'
 Plug 'mileszs/ack.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
 
 call plug#end()
 
