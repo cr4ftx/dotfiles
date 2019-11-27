@@ -1,7 +1,5 @@
 # Dotfiles
 
-> Greatly inspired by [Lucas F. Costa](https://github.com/lucasfcosta/dotfiles)
-
 ![Dotfiles](./dotfiles.png "Screenshot of this dotfiles")
 
 ## Prerequisites
@@ -9,9 +7,7 @@
 ### Ubuntu / Debian
 
 ```bash
-sudo add-apt-repository ppa:neovim-ppa/stable
-sudo apt update
-sudo apt install curl git neovim zsh tmux fonts-powerline
+sudo apt install curl git neovim zsh tmux fonts-powerline ack-grep
 ```
 
 [Color theme for GNOME terminal](https://github.com/arcticicestudio/nord-gnome-terminal#installation)
