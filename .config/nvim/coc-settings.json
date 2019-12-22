@@ -1,0 +1,46 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "typescript",
+    "javascript",
+    "json",
+    "javascriptreact",
+    "typescriptreact",
+    "css",
+    "markdown",
+    "vue",
+    "yaml",
+    "elm",
+    "scss"
+  ],
+  "eslint.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue"
+  ],
+  "prettier.disableLanguages": [],
+  "prettier.semi": true,
+  "prettier.singleQuote": true,
+  "prettier.tabWidth": 2,
+  "prettier.disableSuccessMessage": true,
+  "vetur.format.enable": false,
+  "git.addGBlameToBufferVar": true,
+  "snippets.extends": {
+    "typescript": ["javascript"],
+    "javascriptreact": ["javascript"]
+  },
+  "yaml.schemas": {
+    "http://json.schemastore.org/gitlab-ci": "gitlab-ci.yml"
+  },
+  "languageserver": {
+    "elmLS": {
+      "command": "elm-language-server",
+      "filetypes": ["elm"],
+      "rootPatterns": ["elm.json"],
+      "initializationOptions": {
+        "elmAnalyseTrigger": "change"
+      }
+    }
+  }
+}
