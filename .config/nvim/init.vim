@@ -11,21 +11,34 @@ set shiftwidth=2
 
 autocmd FileType make setlocal shiftwidth=4 tabstop=4
 
+" Plugins --------------------------------------------------------------------
+
+call plug#begin()
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'jiangmiao/auto-pairs'
+Plug 'mileszs/ack.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
+Plug 'arcticicestudio/nord-vim'
+Plug 'leafgarland/typescript-vim'
+
+call plug#end()
+
+colorscheme nord
+
 let NERDTreeShowHidden = 1
 map <silent> <C-s> :NERDTreeToggle<CR>
 let g:NERDTreeQuitOnOpen = 1
 
 nnoremap <C-P> :Files<CR>
-
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
-" really, just dont
-inoremap <Up>    <NOP>
-inoremap <Down>  <NOP>
-inoremap <Left>  <NOP>
-inoremap <Right> <NOP>
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -100,6 +113,12 @@ function! s:select_current_word()
   return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
 endfunc
 
+augroup SyntaxSettings
+    autocmd!
+    autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
+    autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup END
+
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
@@ -119,6 +138,9 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" comment highlight in jsonc
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
 " Using CocList
 " Show all diagnostics
@@ -142,15 +164,22 @@ function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
 
+function! LightlineGitBlame()
+    let blame = get(b:, 'coc_git_blame', '')
+    return winwidth(0) > 120 ? blame : ''
+endfunction
+
 let g:lightline = {
 \ 'colorscheme': 'nord',
 \ 'active': {
 \   'left': [ [ 'mode', 'paste' ],
-\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ],
+\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified', 'blame' ] ],
 \ },
 \ 'component_function': {
 \   'cocstatus': 'coc#status',
 \   'currentfunction': 'CocCurrentFunction',
+\   'blame': 'LightlineGitBlame',
+\   'gitbranch': 'fugitive#head',
 \ },
 \ }
 
@@ -161,26 +190,6 @@ let g:coc_global_extensions = [
 \  'coc-tsserver',
 \  'coc-json',
 \  'coc-emmet',
+\  'coc-prettier',
+\  'https://github.com/andys8/vscode-jest-snippets',
 \]
-
-" Plugins --------------------------------------------------------------------
-
-call plug#begin()
-
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'editorconfig/editorconfig-vim'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-Plug 'itchyny/lightline.vim'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'jiangmiao/auto-pairs'
-Plug 'arcticicestudio/nord-vim'
-Plug 'mileszs/ack.vim'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
-
-call plug#end()
-
-colorscheme nord

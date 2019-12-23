@@ -1,4 +1,9 @@
 {
-    "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown"],
-	"git.addGBlameToBufferVar": true
+  "coc.preferences.formatOnSaveFiletypes": ["typescript", "javascript", "json", "javascriptreact", "typescriptreact", "css", "Markdown", "vue"],
+  "prettier.singleQuote": true,
+  "git.addGBlameToBufferVar": true,
+  "snippets.extends": {
+    "typescript": ["javascript"],
+    "javascriptreact": ["javascript"]
+  }
 }
