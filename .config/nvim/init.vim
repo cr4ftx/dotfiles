@@ -29,6 +29,7 @@ Plug 'mileszs/ack.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
 Plug 'arcticicestudio/nord-vim'
 Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
 call plug#end()
 
