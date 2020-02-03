@@ -8,6 +8,7 @@ set shortmess+=c
 set signcolumn=yes
 set clipboard=unnamed
 set shiftwidth=2
+set nowrap
 
 autocmd FileType make setlocal shiftwidth=4 tabstop=4
 
@@ -39,6 +40,7 @@ colorscheme nord
 let NERDTreeShowHidden = 1
 map <silent> <C-s> :NERDTreeToggle<CR>
 let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeWinSize=50
 
 nnoremap <C-P> :Files<CR>
 
