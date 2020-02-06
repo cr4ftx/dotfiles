@@ -2,6 +2,8 @@
 
 ![Dotfiles](./dotfiles.png "Screenshot of this dotfiles")
 
+> coc.vim is awesome ❤️
+
 ## Prerequisites
 
 ### Ubuntu / Debian
@@ -19,37 +21,12 @@ git clone https://github.com/swanncastel/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles && ./bootstrap.sh -is
 ```
 
-[Follow ycm instructions](https://github.com/ycm-core/YouCompleteMe#linux-64-bit)
-
 To use fzf outside of Vim
 `~/.fzf/install`
 
-## Key bindings
+## TODO
 
-#### Git
-
-* [See oh-my-zsh git plugin](https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git/#aliases)
-* gdf = git difftool
-
-#### Tmux
-
-* Prefix has been changed to <Ctrl+a>
-* [See tmux-pain-control](https://github.com/tmux-plugins/tmux-pain-control#bindings)
-* [See tmux-sensible](https://github.com/tmux-plugins/tmux-sensible#key-bindings)
-
-#### Vim
-
-* <Ctrl+s> -> Toggle NERDTree
-* <Ctrl+p> -> Fuzzy find
-* <Ctrl+n> -> Start mulicursor
-
-#### Ycm
-
-* <Ctrl+y><Ctrl+d> -> :YcmCompleter GetDoc
-* <Ctrl+y><Ctrl+g> -> :YcmCompleter GoTo
-* <Ctrl+y><Ctrl+r> -> :YcmCompleter RefactorRename
-* <Ctrl+y><Ctrl+t> -> :YcmCompleter GetType
-
-#### Emmet
-
-<Ctrl+y>,
+-   update screenshot
+-   test coc-yaml
+-   test coc-lists to replace fzf
+-   test coc-explorer (uses LSP and contains icons out of the box)
