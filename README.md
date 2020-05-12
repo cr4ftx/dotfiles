@@ -7,7 +7,7 @@
 ## Prerequisites
 
 ```bash
-sudo apt install curl git neovim zsh tmux fonts-powerline ack-grep alacritty
+sudo apt install curl git neovim zsh tmux ack-grep alacritty stow
 ```
 
 [nerd font](https://github.com/ryanoasis/nerd-fonts#font-installation)
@@ -16,7 +16,7 @@ sudo apt install curl git neovim zsh tmux fonts-powerline ack-grep alacritty
 
 ```bash
 git clone https://github.com/swanncastel/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles && ./bootstrap.sh -is
+cd ~/.dotfiles && ./install.sh && stow . -v
 ```
 
 To use fzf outside of Vim
