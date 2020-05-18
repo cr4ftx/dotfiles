@@ -11,6 +11,7 @@ set shiftwidth=2
 set nowrap
 set encoding=UTF-8
 set autoread
+set noshowmode
 
 autocmd FileType make setlocal shiftwidth=4 tabstop=4
 
@@ -19,8 +20,6 @@ let mapleader = ' '
 call plug#begin()
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-surround'
@@ -35,7 +34,6 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'andys8/vim-elm-syntax'
 
 call plug#end()
@@ -59,8 +57,6 @@ let g:NERDTreeMouseMode = 1
 let g:NERDTreeStatusline = ' '
 let g:NERDTreeWinSize=40
 nnoremap <silent> <C-s> :call MyNerdToggle()<CR>
-
-nnoremap <C-P> :Files<CR>
 
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -203,7 +199,11 @@ let g:lightline = {
 \ 'colorscheme': 'nord',
 \ 'active': {
 \   'left': [ [ 'mode', 'paste' ],
-\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified', 'blame' ] ],
+\             [ 'gitbranch', 'readonly', 'filename', 'modified' ],
+\             [ 'blame' ] ],
+\   'right': [ [ 'lineinfo' ],
+\            [ 'percent' ],
+\            [ 'cocstatus', 'currentfunction' ,'fileformat', 'fileencoding', 'filetype' ] ]
 \ },
 \ 'component_function': {
 \   'cocstatus': 'coc#status',

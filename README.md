@@ -18,6 +18,3 @@ sudo apt install curl git neovim zsh tmux ack-grep alacritty stow
 git clone https://github.com/swanncastel/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles && ./install.sh && stow . -v
 ```
-
-To use fzf outside of Vim
-`~/.fzf/install`
