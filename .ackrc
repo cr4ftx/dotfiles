@@ -1,0 +1,7 @@
+--ignore-dir=coverage
+--ignore-dir=node_modules
+--ignore-dir=dist
+--ignore-dir=build
+--ignore-file=is:yarn.lock
+--ignore-file=is:yarn-error.log
+--ignore-file=is:package-lock.json
