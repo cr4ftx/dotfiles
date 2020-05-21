@@ -12,6 +12,7 @@
     "elm",
     "scss"
   ],
+
   "eslint.filetypes": [
     "javascript",
     "javascriptreact",
@@ -19,20 +20,25 @@
     "typescriptreact",
     "vue"
   ],
+
   "prettier.disableLanguages": [],
-  "prettier.semi": true,
+  "prettier.semi": false,
   "prettier.singleQuote": true,
-  "prettier.tabWidth": 2,
   "prettier.disableSuccessMessage": true,
+
   "vetur.format.enable": false,
-  "git.addGBlameToBufferVar": true,
+
+  "git.addGBlameToVirtualText": true,
+
   "snippets.extends": {
     "typescript": ["javascript"],
     "javascriptreact": ["javascript"]
   },
+
   "yaml.schemas": {
     "http://json.schemastore.org/gitlab-ci": "gitlab-ci.yml"
   },
+
   "languageserver": {
     "elmLS": {
       "command": "elm-language-server",

@@ -40,3 +40,6 @@ colors:
     magenta: '#B48EAD'
     cyan: '#8FBCBB'
     white: '#ECEFF4'
+
+mouse:
+  hide_when_typing: true

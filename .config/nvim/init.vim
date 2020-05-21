@@ -55,15 +55,75 @@ let NERDTreeShowHidden = 1
 let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeMouseMode = 1
 let g:NERDTreeStatusline = ' '
-let g:NERDTreeWinSize=40
+let g:NERDTreeWinSize=45
 nnoremap <silent> <C-s> :call MyNerdToggle()<CR>
 
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+nnoremap <leader>h gT<cr>
+nnoremap <leader>l gt<cr>
 
-" coc.vim config
+nnoremap <leader><space> :nohls<cr>
+nnoremap <leader>gm :Gvdiffsplit!<cr>
+
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
+function! LightlineReadonly()
+    return &readonly ? '' : ''
+endfunction
+
+function! LightlineFugitive()
+    if exists('*FugitiveHead')
+        let branch = FugitiveHead()
+        return branch !=# '' ? ' ' . branch : ''
+    endif
+    return ''
+endfunction
+
+let g:lightline = {
+\ 'colorscheme': 'nord',
+\ 'active': {
+\   'left': [ [ 'mode', 'paste' ],
+\             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+\   'right': [ [ 'lineinfo' ],
+\            [ 'percent' ],
+\            [ 'cocstatus', 'currentfunction' ,'fileformat', 'fileencoding', 'filetype' ] ]
+\ },
+\ 'inactive': {
+\   'left': [ [ 'filename' ] ] ,
+\   'right': [] ,
+\ },
+\ 'component_function': {
+\   'cocstatus': 'coc#status',
+\   'currentfunction': 'CocCurrentFunction',
+\   'gitbranch': 'LightlineFugitive',
+\   'readonly': 'LightlineReadonly',
+\ },
+\ 'separator': { 'left': '', 'right': '' },
+\ 'subseparator': { 'left': '', 'right': '' },
+\ }
+
+let g:coc_global_extensions = [
+\  'coc-json',
+\  'coc-css',
+\  'coc-html',
+\  'coc-tsserver',
+\  'coc-eslint',
+\  'coc-yaml',
+\  'coc-emmet',
+\  'coc-prettier',
+\  'coc-vimlsp',
+\  'coc-cssmodules',
+\  'https://github.com/andys8/vscode-jest-snippets',
+\]
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+" from coc.vim README
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -185,44 +245,3 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
-function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
-endfunction
-
-function! LightlineGitBlame()
-    let blame = get(b:, 'coc_git_blame', '')
-    return winwidth(0) > 120 ? blame : ''
-endfunction
-
-let g:lightline = {
-\ 'colorscheme': 'nord',
-\ 'active': {
-\   'left': [ [ 'mode', 'paste' ],
-\             [ 'gitbranch', 'readonly', 'filename', 'modified' ],
-\             [ 'blame' ] ],
-\   'right': [ [ 'lineinfo' ],
-\            [ 'percent' ],
-\            [ 'cocstatus', 'currentfunction' ,'fileformat', 'fileencoding', 'filetype' ] ]
-\ },
-\ 'component_function': {
-\   'cocstatus': 'coc#status',
-\   'currentfunction': 'CocCurrentFunction',
-\   'blame': 'LightlineGitBlame',
-\   'gitbranch': 'fugitive#head',
-\ },
-\ }
-
-let g:coc_global_extensions = [
-\  'coc-json',
-\  'coc-css',
-\  'coc-html',
-\  'coc-tsserver',
-\  'coc-eslint',
-\  'coc-yaml',
-\  'coc-emmet',
-\  'coc-prettier',
-\  'coc-vimlsp',
-\  'coc-cssmodules',
-\  'https://github.com/andys8/vscode-jest-snippets',
-\]

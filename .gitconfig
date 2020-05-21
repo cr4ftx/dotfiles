@@ -1,14 +1,14 @@
 [core]
-	editor = nvim
+    editor = nvim
 [user]
-	email = swann.castel@hotmail.fr
-	name = Swann Castel
+    email = swann.castel@matters.tech
+    name = Swann Castel
 [difftool]
-	prompt = true
+    prompt = true
 [diff]
-	tool = nvimdiff
+    tool = nvimdiff
 [difftool "nvimdiff"]
-	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [mergetool]
     prompt = true
 [merge]
