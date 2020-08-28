@@ -12,6 +12,7 @@ set nowrap
 set encoding=UTF-8
 set autoread
 set noshowmode
+set nohls
 
 autocmd FileType make setlocal shiftwidth=4 tabstop=4
 
@@ -31,14 +32,31 @@ Plug 'mileszs/ack.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
 Plug 'arcticicestudio/nord-vim'
 Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdtree'
 Plug 'andys8/vim-elm-syntax'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
 colorscheme nord
+
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <leader>h gT<cr>
+nnoremap <leader>l gt<cr>
+
+nnoremap <leader><space> :nohls<cr>
+nnoremap <leader>gm :Gvdiffsplit!<cr>
+
+nnoremap <C-p> :Files<cr>
+
+" NERDTree
 
 function MyNerdToggle()
     if &filetype == 'nerdtree' || @% == ""
@@ -58,15 +76,7 @@ let g:NERDTreeStatusline = ' '
 let g:NERDTreeWinSize=45
 nnoremap <silent> <C-s> :call MyNerdToggle()<CR>
 
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
-nnoremap <leader>h gT<cr>
-nnoremap <leader>l gt<cr>
-
-nnoremap <leader><space> :nohls<cr>
-nnoremap <leader>gm :Gvdiffsplit!<cr>
+" Lightline
 
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
@@ -107,6 +117,8 @@ let g:lightline = {
 \ 'subseparator': { 'left': '', 'right': '' },
 \ }
 
+" CoC extentions
+
 let g:coc_global_extensions = [
 \  'coc-json',
 \  'coc-css',
@@ -115,11 +127,17 @@ let g:coc_global_extensions = [
 \  'coc-eslint',
 \  'coc-yaml',
 \  'coc-emmet',
+\  'coc-vetur',
+\  'coc-git',
 \  'coc-prettier',
 \  'coc-vimlsp',
 \  'coc-cssmodules',
+\  'coc-snippets',
 \  'https://github.com/andys8/vscode-jest-snippets',
+\  'https://github.com/xianghongai/vscode-react-snippet',
 \]
+
+" EditorConfig
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
