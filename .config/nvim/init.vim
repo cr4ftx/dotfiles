@@ -39,6 +39,7 @@ Plug 'preservim/nerdtree'
 Plug 'andys8/vim-elm-syntax'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'cespare/vim-toml'
 
 call plug#end()
 
@@ -48,8 +49,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
-nnoremap <leader>h gT<cr>
-nnoremap <leader>l gt<cr>
+nnoremap <M-h> gT<cr>
+nnoremap <M-l> gt<cr>
 
 nnoremap <leader><space> :nohls<cr>
 nnoremap <leader>gm :Gvdiffsplit!<cr>
@@ -66,8 +67,6 @@ function MyNerdToggle()
     endif
 endfunction
 
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeShowHidden = 1
 let g:NERDTreeQuitOnOpen = 1
@@ -133,6 +132,7 @@ let g:coc_global_extensions = [
 \  'coc-vimlsp',
 \  'coc-cssmodules',
 \  'coc-snippets',
+\  'coc-rls',
 \  'https://github.com/andys8/vscode-jest-snippets',
 \  'https://github.com/xianghongai/vscode-react-snippet',
 \]

@@ -52,3 +52,5 @@ if [[ ! -d $HOME/.deno ]]; then
 else
     echo "Deno is already installed"
 fi
+
+nvim +PlugInstall +qa

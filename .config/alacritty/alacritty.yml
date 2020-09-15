@@ -2,7 +2,7 @@ window:
   startup_mode: Maximized
 
 font:
-  size: 9
+  size: 10
 
   normal:
     family: MesloLGS Nerd Font

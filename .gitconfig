@@ -1,7 +1,7 @@
 [core]
     editor = nvim
 [user]
-    email = swann.castel@matters.tech
+    email = swann.castel@hotmail.fr
     name = Swann Castel
 [difftool]
     prompt = true

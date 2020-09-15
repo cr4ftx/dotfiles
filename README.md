@@ -6,33 +6,29 @@
 
 ## Prerequisites
 
+### Ubuntu
+
 ```bash
-sudo apt install curl git neovim zsh tmux ack-grep alacritty stow
+sudo add-apt-repository ppa:mmstick76/alacritty
+sudo apt update
+sudo apt install curl git neovim zsh tmux ack-grep alacritty stow fd-find
 ```
 
-[nerd font](https://github.com/ryanoasis/nerd-fonts#font-installation)
+### MacOS
+
+> install brew https://docs.brew.sh/Installation
+
+```bash
+brew cask install alacritty
+brew install neovim ack zsh tmux stow alacritty fd
+```
 
 ## Installation
 
 ```bash
 git clone https://github.com/swanncastel/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles && ./install.sh && stow . -v
+cd ~/.dotfiles && stow . -v && ./install.sh
+chsh
 ```
 
-### MacOS
-
-> install brew
-
-#### Install
-
-```bash
-brew cask install alacritty vscodium spotify
-brew install neovim ack zsh tmux stow alacritty
-```
-
-#### Install nerd font
-
-```bash
-brew tap homebrew/cask-fonts
-brew cask install font-meslo-lg-nerd-font
-```
+The first time you run tmux hit <crtl+a I>

@@ -2,15 +2,17 @@
   "coc.preferences.formatOnSaveFiletypes": [
     "typescript",
     "javascript",
-    "json",
     "javascriptreact",
     "typescriptreact",
-    "css",
-    "markdown",
     "vue",
+    "html",
+    "css",
+    "scss",
+    "markdown",
+    "json",
     "yaml",
     "elm",
-    "scss"
+    "rust"
   ],
 
   "eslint.filetypes": [
@@ -48,5 +50,7 @@
         "elmAnalyseTrigger": "change"
       }
     }
-  }
+  },
+
+  "rust.wait_to_build": 100
 }
