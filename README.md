@@ -11,7 +11,14 @@
 ```bash
 sudo add-apt-repository ppa:mmstick76/alacritty
 sudo apt update
-sudo apt install curl git neovim zsh tmux ack-grep alacritty stow fd-find
+sudo apt install curl git neovim zsh tmux ack alacritty stow fd-find
+```
+
+### Fedora
+
+```bash
+sudo dnf copr enable pschyska/alacritty
+sudo dnf install curl git neovim zsh tmux ack alacritty stow fd-find
 ```
 
 ### MacOS
@@ -31,4 +38,5 @@ cd ~/.dotfiles && stow . -v && ./install.sh
 chsh
 ```
 
-The first time you run tmux hit <crtl+a I>
+- The first time you run tmux hit <crtl>a<shift>i to install tmux plugins.
+- Run vim and CoC will install coc extentions.
