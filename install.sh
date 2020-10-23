@@ -3,12 +3,12 @@
 setup_colors() {
     # Only use colors if connected to a terminal
     if [ -t 1 ]; then
-        RED=$(println '\033[31m')
-        GREEN=$(println '\033[32m')
-        YELLOW=$(println '\033[33m')
-        BLUE=$(println '\033[34m')
-        BOLD=$(println '\033[1m')
-        RESET=$(println '\033[m')
+        RED=$(printf '\033[31m')
+        GREEN=$(printf '\033[32m')
+        YELLOW=$(printf '\033[33m')
+        BLUE=$(printf '\033[34m')
+        BOLD=$(printf '\033[1m')
+        RESET=$(printf '\033[m')
     else
         RED=""
         GREEN=""
@@ -24,7 +24,7 @@ println() {
 }
 
 print_header() {
-    printf $BOLD
+    echo $BOLD
     cat <<-'EOF'
 
     ____                           _           _       _    __ _ _
@@ -34,7 +34,14 @@ print_header() {
    |____/ \_/\_/ \__,_|_| |_|_| |_| |___/  \__,_|\___/ \__|_| |_|_|\___||___/
 
 EOF
-    printf $RESET
+    echo $RESET
+}
+
+install_dotfiles() {
+    if [ ! -d ~/.dotfiles ]; then
+        println "${GREEN}\nCloning Dotfiles${RESET}"
+        git clone https://github.com/swanncastel/dotfiles.git ~/.dotfiles || exit 1
+    fi
 }
 
 install_oh_my_zsh() {
@@ -49,10 +56,11 @@ install_oh_my_zsh() {
 }
 
 install_tmux_plugin_manager() {
-    TPM_HOME="$HOME/.tmux/plugins/tpm"
+    local TPM_HOME="$HOME/.tmux/plugins/tpm"
     if [[ ! -d $TPM_HOME ]]; then
         println "${GREEN}\nCloning tmux plugins manager${RESET}"
-        git clone https://github.com/tmux-plugins/tpm $TPM_HOME
+        git clone https://github.com/tmux-plugins/tpm $TPM_HOME \
+            && TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins $TPM_HOME/bin/install_plugins
     else
 	    println "${BLUE}\nTPM already installed in $TPM_HOME${RESET}"
     fi
@@ -62,8 +70,8 @@ install_tmux_plugin_manager() {
 install_plug_vim() {
     if [[ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]]; then
         println "${GREEN}\nInstalling Plug Vim${RESET}"
-        curl -fLo "${XDG_DATA_HOME:-~/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-           https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+           https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && nvim +PlugInstall +qa
     else
 	    println "${BLUE}\nPlug Vim is already installed${RESET}"
     fi
@@ -88,7 +96,7 @@ install_rust_toolchain() {
 install_nvm() {
     if [[ ! -d ~/.nvm ]]; then
 	echo ""
-	read -p "${BOLD}Install nvm [yN] ? ${RESET}"
+	read -p "${BOLD}Install nvm and node12 [yN]? ${RESET}"
 	    if [[ $REPLY =~ ^[yY]$ ]]; then
             println "${GREEN}Installing nvm and node12${RESET}"
             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash
@@ -113,31 +121,35 @@ install_deno() {
     fi
 }
 
-main() {
-    setup_colors
-    print_header
-    install_oh_my_zsh
-    install_tmux_plugin_manager
-    install_plug_vim
-    install_rust_toolchain
-    install_nvm
-    install_deno
-
+link_dotfiles() {
     println "${BLUE}\nLinking config files${RESET}"
     mkdir -p "$HOME/.config/nvim"
     mkdir -p "$HOME/.local/share/fonts"
-    stow . -v
+    cd ~/.dotfiles && stow . -v
+}
 
+change_shell() {
     if [[ $SHELL != "/bin/zsh" ]]; then
         println "${YELLOW}\nChanging default shell to zsh...${RESET}"
         chsh -s /bin/zsh
     fi
 
-    if [[ ! -d ~/.config/nvim/plugged ]]; then
-        nvim +PlugInstall +qa
-    fi
+}
 
-    println "${GREEN}\nInstallation completed 🚀🔥❤️${RESET}"
+main() {
+    setup_colors
+    print_header
+    install_dotfiles
+    link_dotfiles
+    install_oh_my_zsh
+    install_tmux_plugin_manager
+    install_plug_vim
+    change_shell
+    install_rust_toolchain
+    install_nvm
+    install_deno
+
+    println "${GREEN}\nInstallation completed, you might need to log out for the chsh to take effect 🚀🔥❤️${RESET}"
 }
 
 main

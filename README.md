@@ -33,9 +33,5 @@ brew install neovim ack zsh tmux stow alacritty fd htop
 ## Installation
 
 ```bash
-git clone https://github.com/swanncastel/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles && ./install.sh
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/swanncastel/dotfiles/master/install.sh)"
 ```
-
-- The first time you run tmux hit crtl+a shift+i to install tmux plugins.
-- Run vim and CoC will install coc extentions.

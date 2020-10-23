@@ -13,7 +13,7 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_TMUX_AUTOSTART=true
 
-plugins=(git sudo tmux)
+plugins=(tmux git sudo)
 
 source $ZSH/oh-my-zsh.sh
 
