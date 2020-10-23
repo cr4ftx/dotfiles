@@ -49,8 +49,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
-nnoremap <M-h> gT<cr>
-nnoremap <M-l> gt<cr>
+nnoremap <M-h> gT
+nnoremap <M-l> gt
 
 nnoremap <leader><space> :nohls<cr>
 nnoremap <leader>gm :Gvdiffsplit!<cr>

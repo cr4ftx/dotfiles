@@ -1,6 +1,6 @@
 root = true
 
-[*.{vim,editorconfig,aliases,zsh,conf,gitconfig,zshrc}]
+[*.{vim,editorconfig,aliases,conf,gitconfig,zshrc,sh}]
 charset = utf-8
 indent_size = 4
 indent_style = space

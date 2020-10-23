@@ -11,14 +11,14 @@
 ```bash
 sudo add-apt-repository ppa:mmstick76/alacritty
 sudo apt update
-sudo apt install curl git neovim zsh tmux ack alacritty stow fd-find
+sudo apt install curl git neovim zsh tmux ack alacritty stow fd-find htop
 ```
 
 ### Fedora
 
 ```bash
 sudo dnf copr enable pschyska/alacritty
-sudo dnf install curl git neovim zsh tmux ack alacritty stow fd-find
+sudo dnf install curl git neovim zsh tmux ack alacritty stow fd-find htop
 ```
 
 ### MacOS
@@ -27,16 +27,11 @@ sudo dnf install curl git neovim zsh tmux ack alacritty stow fd-find
 
 ```bash
 brew cask install alacritty
-brew install neovim ack zsh tmux stow alacritty fd
+brew install neovim ack zsh tmux stow alacritty fd htop
 ```
 
 ## Installation
 
 ```bash
-git clone https://github.com/swanncastel/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles && stow . -v && ./install.sh
-chsh
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/swanncastel/dotfiles/master/install.sh)"
 ```
-
-- The first time you run tmux hit <crtl>a<shift>i to install tmux plugins.
-- Run vim and CoC will install coc extentions.
