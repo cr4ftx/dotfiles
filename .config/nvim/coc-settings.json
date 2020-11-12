@@ -12,6 +12,7 @@
     "json",
     "yaml",
     "elm",
+    "java",
     "rust"
   ],
 
@@ -52,5 +53,10 @@
     }
   },
 
-  "rust.wait_to_build": 100
+  "rust.wait_to_build": 100,
+
+  "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+  "java.completion.guessMethodArguments": true,
+  "java.completion.maxResults": 20,
+  "java.saveActions.organizeImports": true
 }

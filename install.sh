@@ -126,8 +126,7 @@ install_deno() {
 
 link_dotfiles() {
     println "${BLUE}\nLinking config files${RESET}"
-    mkdir -p "$HOME/.config/nvim"
-    mkdir -p "$HOME/.local/share/fonts"
+    mkdir -p ~/.config/nvim ~/.local/share/fonts/NerdFonts
     cd ~/.dotfiles && stow . -v
 }
 

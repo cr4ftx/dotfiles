@@ -13,6 +13,7 @@ set encoding=UTF-8
 set autoread
 set noshowmode
 set nohls
+set mouse=nv
 
 autocmd FileType make setlocal shiftwidth=4 tabstop=4
 
@@ -120,6 +121,7 @@ let g:lightline = {
 
 let g:coc_global_extensions = [
 \  'coc-json',
+\  'coc-java',
 \  'coc-css',
 \  'coc-html',
 \  'coc-tsserver',
@@ -140,6 +142,16 @@ let g:coc_global_extensions = [
 " EditorConfig
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+" Syntax Settings
+
+augroup SyntaxSettings
+    autocmd!
+    autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
+    autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+    autocmd BufNewFile,BufRead *.elm set filetype=elm
+    autocmd BufNewFile,BufRead .env* set filetype=sh
+augroup END
 
 " from coc.vim README
 
@@ -216,13 +228,6 @@ function! s:select_current_word()
   return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
 endfunc
 
-augroup SyntaxSettings
-    autocmd!
-    autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
-    autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
-    autocmd BufNewFile,BufRead *.elm set filetype=elm
-augroup END
-
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
@@ -248,7 +253,7 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>d  :<C-u>CocList diagnostics<cr>
 " Manage extensions
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
