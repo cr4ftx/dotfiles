@@ -87,11 +87,19 @@ function! LightlineReadonly()
 endfunction
 
 function! LightlineFugitive()
-    if exists('*FugitiveHead')
+    if exists('*FugitiveHead') && winwidth(0) > 100
         let branch = FugitiveHead()
         return branch !=# '' ? ' ' . branch : ''
     endif
     return ''
+endfunction
+
+function! MyFiletype()
+  return strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft'
+endfunction
+
+function! MyFileformat()
+  return &fileformat . ' ' . WebDevIconsGetFileFormatSymbol()
 endfunction
 
 let g:lightline = {
@@ -112,6 +120,8 @@ let g:lightline = {
 \   'currentfunction': 'CocCurrentFunction',
 \   'gitbranch': 'LightlineFugitive',
 \   'readonly': 'LightlineReadonly',
+\   'filetype': 'MyFiletype',
+\   'fileformat': 'MyFileformat',
 \ },
 \ 'separator': { 'left': '', 'right': '' },
 \ 'subseparator': { 'left': '', 'right': '' },
@@ -238,6 +248,11 @@ xmap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
+
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
