@@ -41,6 +41,7 @@ Plug 'andys8/vim-elm-syntax'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'cespare/vim-toml'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 call plug#end()
 
@@ -57,6 +58,8 @@ nnoremap <leader><space> :nohls<cr>
 nnoremap <leader>gm :Gvdiffsplit!<cr>
 
 nnoremap <C-p> :Files<cr>
+
+let g:NERDTreeLimitedSyntax = 1
 
 " NERDTree
 
