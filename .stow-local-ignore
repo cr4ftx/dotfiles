@@ -2,4 +2,6 @@ dotfiles\.png
 install\.sh
 README\.md
 \.git
+\.gitmodules
+\.gitignore
 \.editorconfig

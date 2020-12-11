@@ -1,24 +1,5 @@
 #!/usr/bin/env bash
 
-setup_colors() {
-    # Only use colors if connected to a terminal
-    if [ -t 1 ]; then
-        RED=$(printf '\033[31m')
-        GREEN=$(printf '\033[32m')
-        YELLOW=$(printf '\033[33m')
-        BLUE=$(printf '\033[34m')
-        BOLD=$(printf '\033[1m')
-        RESET=$(printf '\033[m')
-    else
-        RED=""
-        GREEN=""
-        YELLOW=""
-        BLUE=""
-        BOLD=""
-        RESET=""
-    fi
-}
-
 println() {
     printf "$@\n"
 }
@@ -41,7 +22,14 @@ install_dotfiles() {
     if [ ! -d ~/.dotfiles ]; then
         println "${GREEN}\nCloning Dotfiles${RESET}"
         git clone https://github.com/swanncastel/dotfiles.git ~/.dotfiles || exit 1
+        cd ~/.dotfiles git submodule update --init
     fi
+}
+
+link_dotfiles() {
+    println "${BLUE}\nLinking config files${RESET}"
+    mkdir -p ~/.config/nvim ~/.local/share/fonts/NerdFonts
+    cd ~/.dotfiles && stow . -vv
 }
 
 install_oh_my_zsh() {
@@ -54,18 +42,6 @@ install_oh_my_zsh() {
     git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
     println "${GREEN}\nCloning Powerlevel10k${RESET}"
     git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
-}
-
-install_tmux_plugin_manager() {
-    local TPM_HOME="$HOME/.tmux/plugins/tpm"
-    if [[ -d $TPM_HOME ]]; then
-	    println "${BLUE}\nTPM already installed in $TPM_HOME${RESET}"
-        return 0
-    fi
-
-    println "${GREEN}\nCloning tmux plugins manager${RESET}"
-    git clone https://github.com/tmux-plugins/tpm $TPM_HOME
-
 }
 
 install_plug_vim() {
@@ -107,7 +83,7 @@ install_nvm() {
         println "${GREEN}Installing nvm and node12${RESET}"
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash
         source ~/.nvm/nvm.sh
-        nvm install 12
+        nvm install 14
     fi
 }
 
@@ -124,27 +100,35 @@ install_deno() {
     fi
 }
 
-link_dotfiles() {
-    println "${BLUE}\nLinking config files${RESET}"
-    mkdir -p ~/.config/nvim ~/.local/share/fonts/NerdFonts
-    cd ~/.dotfiles && stow . -v
-}
-
 change_shell() {
     if [[ $SHELL != "/bin/zsh" ]]; then
         println "${YELLOW}\nChanging default shell to zsh...${RESET}"
         chsh -s /bin/zsh
     fi
-
 }
 
 main() {
-    setup_colors
+    # Only use colors if connected to a terminal
+    if [ -t 1 ]; then
+        RED=$(printf '\033[31m')
+        GREEN=$(printf '\033[32m')
+        YELLOW=$(printf '\033[33m')
+        BLUE=$(printf '\033[34m')
+        BOLD=$(printf '\033[1m')
+        RESET=$(printf '\033[m')
+    else
+        RED=""
+        GREEN=""
+        YELLOW=""
+        BLUE=""
+        BOLD=""
+        RESET=""
+    fi
+
     print_header
     install_dotfiles
     link_dotfiles
     install_oh_my_zsh
-    install_tmux_plugin_manager
     install_plug_vim
     change_shell
     install_rust_toolchain

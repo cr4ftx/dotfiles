@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# Prevent annoying rm -rf
 if [[ "$OSTYPE" != "darwin"* ]]; then
     alias rm="mv -t /tmp"
 fi
