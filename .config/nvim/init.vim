@@ -32,16 +32,12 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'mileszs/ack.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
 Plug 'arcticicestudio/nord-vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
 Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'preservim/nerdtree'
-Plug 'andys8/vim-elm-syntax'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'cespare/vim-toml'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
@@ -90,7 +86,7 @@ function! LightlineReadonly()
 endfunction
 
 function! LightlineFugitive()
-    if exists('*FugitiveHead') && winwidth(0) > 100
+    if exists('*FugitiveHead') && winwidth(0) > 120
         let branch = FugitiveHead()
         return branch !=# '' ? ' ' . branch : ''
     endif
@@ -191,8 +187,10 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> [g <Plug>(coc-git-prevchunk)
+nmap <silent> ]g <Plug>(coc-git-nextchunk)
+nmap <silent> [d <Plug>(coc-diagnostic-prev)
+nmap <silent> ]d <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -252,10 +250,17 @@ xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
+" create text object for class objects
 xmap ic <Plug>(coc-classobj-i)
 omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
+
+" create text object for git chunks
+omap ag <Plug>(coc-git-chunk-inner)
+xmap ag <Plug>(coc-git-chunk-inner)
+omap ig <Plug>(coc-git-chunk-inner)
+xmap ig <Plug>(coc-git-chunk-inner)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')

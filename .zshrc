@@ -14,7 +14,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOCONNECT=false
 
-plugins=(tmux git sudo)
+plugins=(tmux git sudo vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
