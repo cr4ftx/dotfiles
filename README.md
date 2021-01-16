@@ -11,14 +11,20 @@
 ```bash
 sudo add-apt-repository ppa:mmstick76/alacritty
 sudo apt update
-sudo apt install curl git neovim zsh tmux ack alacritty stow fd-find htop
+sudo apt install curl git neovim zsh tmux alacritty stow htop ripgrep
 ```
 
 ### Fedora
 
 ```bash
 sudo dnf copr enable pschyska/alacritty
-sudo dnf install curl git neovim zsh tmux ack alacritty stow fd-find htop
+sudo dnf install curl git neovim zsh tmux alacritty stow htop ripgrep
+```
+
+### Arch based
+
+```bash
+sudo pacman -S curl git neovim zsh tmux alacritty stow htop ripgrep
 ```
 
 ### MacOS
@@ -27,7 +33,7 @@ sudo dnf install curl git neovim zsh tmux ack alacritty stow fd-find htop
 
 ```bash
 brew cask install alacritty
-brew install neovim ack zsh tmux stow alacritty fd htop
+brew install neovim zsh tmux stow alacritty htop ripgrep
 ```
 
 ## Installation

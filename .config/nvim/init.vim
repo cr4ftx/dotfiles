@@ -148,6 +148,10 @@ let g:coc_global_extensions = [
 \  'https://github.com/xianghongai/vscode-react-snippet',
 \]
 
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep --hidden'
+endif
+
 " EditorConfig
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']

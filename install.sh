@@ -28,7 +28,10 @@ install_dotfiles() {
 
 link_dotfiles() {
     println "${BLUE}\nLinking config files${RESET}"
-    mkdir -p ~/.config/nvim ~/.local/share/fonts/NerdFonts
+    mkdir -p \
+        ~/.config/nvim \
+        ~/.local/share/fonts/NerdFonts \
+        ~/.tmux/plugins
     cd ~/.dotfiles && stow . -vv
 }
 
