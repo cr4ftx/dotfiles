@@ -88,7 +88,7 @@ endfunction
 function! LightlineFugitive()
     if exists('*FugitiveHead') && winwidth(0) > 120
         let branch = FugitiveHead()
-        return branch !=# '' ? ' ' . branch : ''
+        return branch !=# '' ? ' ' . branch : ''
     endif
     return ''
 endfunction
@@ -247,13 +247,12 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
-" Create mappings for function text object, requires document symbols feature of languageserver.
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
 xmap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
-
-" create text object for class objects
 xmap ic <Plug>(coc-classobj-i)
 omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
@@ -264,6 +263,9 @@ omap ag <Plug>(coc-git-chunk-inner)
 xmap ag <Plug>(coc-git-chunk-inner)
 omap ig <Plug>(coc-git-chunk-inner)
 xmap ig <Plug>(coc-git-chunk-inner)
+
+nmap <silent> <C-b> <Plug>(coc-range-select)
+xmap <silent> <C-b> <Plug>(coc-range-select)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')

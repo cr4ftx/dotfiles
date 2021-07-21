@@ -16,7 +16,7 @@
     "rust"
   ],
 
-  "eslint.filetypes": [
+  "eslint.validate": [
     "javascript",
     "javascriptreact",
     "typescript",
