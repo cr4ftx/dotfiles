@@ -49,6 +49,9 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 nnoremap <M-h> gT
 nnoremap <M-l> gt
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
 
 nnoremap <leader><space> :nohls<cr>
 nnoremap <leader>gm :Gvdiffsplit!<cr>
@@ -145,7 +148,6 @@ let g:coc_global_extensions = [
 \  'coc-snippets',
 \  'coc-rls',
 \  'https://github.com/andys8/vscode-jest-snippets',
-\  'https://github.com/xianghongai/vscode-react-snippet',
 \]
 
 if executable('rg')
