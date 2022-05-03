@@ -14,6 +14,7 @@ set autoread
 set noshowmode
 set nohls
 set mouse=nv
+set iskeyword+=-
 
 autocmd FileType make setlocal shiftwidth=4 tabstop=4
 
@@ -38,6 +39,7 @@ Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'npm install --frozen-lockfile && npm run compile' }
 
 call plug#end()
 

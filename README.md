@@ -32,8 +32,7 @@ sudo pacman -S curl git neovim zsh tmux alacritty stow htop ripgrep
 > Install brew https://docs.brew.sh/Installation
 
 ```bash
-brew cask install alacritty
-brew install neovim zsh tmux stow alacritty htop ripgrep
+brew install neovim zsh tmux stow alacritty htop ripgrep alacritty font-meslo-lg-nerd-font
 ```
 
 ## Installation

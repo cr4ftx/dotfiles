@@ -6,13 +6,16 @@
     "typescriptreact",
     "vue",
     "html",
+    "svg",
     "css",
     "scss",
     "markdown",
     "json",
     "yaml",
+    "yaml.docker-compose",
     "elm",
     "java",
+    "graphql",
     "rust"
   ],
 
@@ -27,7 +30,6 @@
   "prettier.disableLanguages": [],
   "prettier.semi": false,
   "prettier.singleQuote": true,
-  "prettier.disableSuccessMessage": true,
 
   "vetur.format.enable": false,
 
@@ -58,5 +60,6 @@
   "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
   "java.completion.guessMethodArguments": true,
   "java.completion.maxResults": 20,
-  "java.saveActions.organizeImports": true
+  "java.saveActions.organizeImports": true,
+  "python.formatting.provider": "autopep8"
 }
