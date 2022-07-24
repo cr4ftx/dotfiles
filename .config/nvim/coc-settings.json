@@ -52,6 +52,11 @@
       "initializationOptions": {
         "elmAnalyseTrigger": "change"
       }
+    },
+    "graphql": {
+      "command": "graphql-lsp",
+      "args": ["server", "-m", "stream"],
+      "filetypes": ["typescript", "typescriptreact", "graphql"]
     }
   },
 
@@ -61,5 +66,7 @@
   "java.completion.guessMethodArguments": true,
   "java.completion.maxResults": 20,
   "java.saveActions.organizeImports": true,
-  "python.formatting.provider": "autopep8"
+  "python.formatting.provider": "autopep8",
+
+  "tailwindCSS.headwind.runOnSave": false
 }
