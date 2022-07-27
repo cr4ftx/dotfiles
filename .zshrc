@@ -12,7 +12,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTOCONNECT=true
+ZSH_TMUX_AUTOCONNECT=false
 
 plugins=(tmux git sudo vi-mode)
 
@@ -62,3 +62,5 @@ export PATH=$PATH:$HOME/.deno/bin
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
 [[ ! -f ~/.zprofile ]] || source ~/.zprofile
+
+alias lg=lazygit

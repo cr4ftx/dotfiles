@@ -1,6 +1,6 @@
 local lualine_status_ok, lualine = pcall(require, 'lualine')
 if not lualine_status_ok then
-  return
+    return
 end
 
 lualine.setup {
@@ -14,7 +14,7 @@ lualine.setup {
             winbar = {},
         },
         always_divide_middle = true,
-        globalstatus = false,
+        globalstatus = true,
         refresh = {
             statusline = 1000,
             tabline = 1000,
