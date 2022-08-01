@@ -15,7 +15,10 @@ return packer.startup(function(use)
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use 'nvim-lualine/lualine.nvim'
     use 'kyazdani42/nvim-tree.lua'
-    use 'shaunsingh/nord.nvim'
+
+    -- use 'shaunsingh/nord.nvim'
+    use 'folke/tokyonight.nvim'
+
     use 'nvim-lua/plenary.nvim'
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',

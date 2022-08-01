@@ -10,4 +10,4 @@ vim.opt.iskeyword = vim.opt.iskeyword + '-'
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.shiftwidth = 2
 
-vim.cmd [[colorscheme nord]]
+vim.cmd [[colorscheme tokyonight]]
