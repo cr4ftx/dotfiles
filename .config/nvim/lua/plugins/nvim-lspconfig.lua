@@ -25,7 +25,7 @@ local on_attach = function(client, bufnr)
     end
 
     -- Disable lsp formatting
-    if client.name == 'tsserver' or client.name == 'jsonls' then
+    if client.name == 'tsserver' or client.name == 'jsonls' or client.name == 'html' then
         client.resolved_capabilities.document_formatting = false
     end
 
@@ -58,7 +58,6 @@ local capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_clie
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local servers = {
-    'graphql',
     'bashls',
     'tsserver',
     'html',
@@ -67,6 +66,7 @@ local servers = {
     'cssmodules_ls',
     'tailwindcss',
     'dockerls',
+    'jedi_language_server',
     -- 'sqlls'
 }
 
@@ -76,6 +76,11 @@ for _, lsp in ipairs(servers) do
         capabilities = capabilities,
     }
 end
+
+lspconfig.tsserver.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
 
 lspconfig.sumneko_lua.setup {
     on_attach = on_attach,
@@ -92,4 +97,9 @@ lspconfig.sumneko_lua.setup {
 lspconfig.emmet_ls.setup {
     capabilities = capabilities,
     filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
+}
+
+lspconfig.graphql.setup {
+    capabilities = capabilities,
+    filetypes = { 'graphql', 'typescriptreact', 'javascriptreact', 'javascript', 'typescript' },
 }

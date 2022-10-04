@@ -11,7 +11,6 @@ return packer.startup(function(use)
     use 'tpope/vim-fugitive'
     use 'tpope/vim-abolish'
     use 'jiangmiao/auto-pairs'
-    use { 'iamcco/markdown-preview.nvim', run = 'cd app && npm install', cmd = 'MarkdownPreview' }
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use 'nvim-lualine/lualine.nvim'
     use 'kyazdani42/nvim-tree.lua'
