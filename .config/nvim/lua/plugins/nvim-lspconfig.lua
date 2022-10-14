@@ -14,7 +14,7 @@ local on_attach = function(client, bufnr)
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
     -- Highlighting references
-    if client.resolved_capabilities.document_highlight then
+    if client.server_capabilities.document_highlight then
         vim.api.nvim_exec([[
           augroup lsp_document_highlight
             autocmd! * <buffer>
@@ -26,7 +26,7 @@ local on_attach = function(client, bufnr)
 
     -- Disable lsp formatting
     if client.name == 'tsserver' or client.name == 'jsonls' or client.name == 'html' then
-        client.resolved_capabilities.document_formatting = false
+        client.server_capabilities.document_formatting = false
     end
 
     -- Enable completion triggered by <c-x><c-o>
