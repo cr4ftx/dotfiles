@@ -9,5 +9,6 @@ vim.opt.wrap = false
 vim.opt.iskeyword = vim.opt.iskeyword + '-'
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.shiftwidth = 2
+vim.opt.undofile = true
 
 vim.cmd [[colorscheme tokyonight]]
