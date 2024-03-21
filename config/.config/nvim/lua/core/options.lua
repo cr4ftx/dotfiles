@@ -21,3 +21,5 @@ vim.opt.expandtab = true
 vim.opt.pumheight = 20
 vim.opt.showmode = false
 vim.opt.mouse = ""
+vim.opt.timeout = true
+vim.opt.timeoutlen = 300

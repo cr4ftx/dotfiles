@@ -1,3 +1,5 @@
+---@diagnostic disable: missing-fields
+
 return {
     {
         "nvim-neotest/neotest",
@@ -24,12 +26,14 @@ return {
                     })
                     neotest.summary.open()
                 end,
+                desc = "Run current buffer tests",
             },
             {
                 "<leader>ts",
                 function()
                     require("neotest").summary.toggle()
                 end,
+                desc = "Toggle summary",
             },
         },
     },

@@ -1,9 +1,11 @@
 return {
     {
         "sindrets/diffview.nvim",
+        -- stylua: ignore
         keys = {
-            { "<leader>go", "<cmd>DiffviewOpen<cr>" },
-            { "<leader>gd", "<cmd>DiffviewClose<cr>" },
+            { "<leader>go", "<cmd>DiffviewOpen<cr>", desc = "Open diffview" },
+            { "<leader>gd", "<cmd>DiffviewClose<cr>", desc = "Close diffview" },
+            { "<leader>gh", "<cmd>DiffviewFileHistory<cr>", desc = "File history" },
         },
         cmd = {
             "DiffviewOpen",
@@ -35,6 +37,7 @@ return {
                 sb.setup()
             end
 
+            -- stylua: ignore
             opts.on_attach = function(bufnr)
                 local map = function(mode, l, r, mOpts)
                     mOpts = mOpts or {}
@@ -51,7 +54,10 @@ return {
                         gs.next_hunk()
                     end)
                     return "<Ignore>"
-                end, { expr = true })
+                end, {
+                    expr = true,
+                    desc = "Go to next hunk",
+                })
 
                 map("n", "[g", function()
                     if vim.wo.diff then
@@ -61,16 +67,19 @@ return {
                         gs.prev_hunk()
                     end)
                     return "<Ignore>"
-                end, { expr = true })
+                end, {
+                    expr = true,
+                    desc = "Go to previous hunk",
+                })
 
                 -- Actions
-                map({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>")
-                map({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>")
-                map("n", "<leader>hS", gs.stage_buffer)
-                map("n", "<leader>hu", gs.undo_stage_hunk)
-                map("n", "<leader>hR", gs.reset_buffer)
-                map("n", "<leader>hp", gs.preview_hunk)
-                map("n", "<leader>hd", gs.diffthis)
+                map({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>", { desc = "Stage hunk" })
+                map({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>", { desc = "Reset hunk" })
+                map("n", "<leader>hS", gs.stage_buffer, { desc = "Stage current buffer" })
+                map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "Undo stage hunk" })
+                map("n", "<leader>hR", gs.reset_buffer, { desc = "Reset current buffer" })
+                map("n", "<leader>hp", gs.preview_hunk, { desc = "Preview hunk" })
+                map("n", "<leader>hd", gs.diffthis, { desc = "Diff current buffer" })
 
                 -- Text object
                 map({ "o", "x" }, "ig", ":<C-U>Gitsigns select_hunk<CR>")
@@ -93,12 +102,14 @@ return {
                 function()
                     require("neogit").open({ "commit" })
                 end,
+                desc = "Open neogit commit",
             },
             {
                 "<leader>gg",
                 function()
                     require("neogit").open()
                 end,
+                desc = "Open neogit",
             },
         },
         opts = {},

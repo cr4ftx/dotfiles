@@ -1,3 +1,5 @@
+---@diagnostic disable: missing-fields
+
 local signs = require("utils.signs")
 
 local disable_filetypes = {
@@ -67,15 +69,16 @@ return {
             "nvim-lua/plenary.nvim",
             "folke/trouble.nvim",
         },
+        -- stylua: ignore
         keys = {
-            { "<C-p>", "<cmd>Telescope find_files<cr>" },
-            { "<C-g>", "<cmd>Telescope live_grep<cr>" },
-            { "<C-n>", "<cmd>Telescope grep_string<cr>" },
-            { "gd", "<cmd>Telescope lsp_definitions<cr>" },
-            { "gi", "<cmd>Telescope lsp_implementations<cr>" },
-            { "gr", "<cmd>Telescope lsp_references<cr>" },
-            { "gD", "<cmd>Telescope lsp_type_definitions<cr>" },
-            { "<leader>gb", "<cmd>Telescope git_branches<cr>" },
+            { "<C-p>", "<cmd>Telescope find_files<cr>", desc = "Find files" },
+            { "<C-g>", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
+            { "<C-n>", "<cmd>Telescope grep_string<cr>", desc = "Grep current word" },
+            { "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Go to definition" },
+            { "gi", "<cmd>Telescope lsp_implementations<cr>", desc = "Go to implementations" },
+            { "gr", "<cmd>Telescope lsp_references<cr>", desc = "Go to references" },
+            { "gD", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Go to type definitions" },
+            { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "List git branches" },
         },
         cmd = "Telescope",
         config = function()
@@ -117,8 +120,49 @@ return {
                     enable = true,
                     additional_vim_regex_highlighting = false,
                 },
+                textobjects = {
+                    select = {
+                        enable = true,
+                        lookahead = true,
+                        keymaps = {
+                            ["aa"] = "@parameter.outer",
+                            ["ia"] = "@parameter.inner",
+                            ["af"] = "@function.outer",
+                            ["if"] = "@function.inner",
+                            ["ac"] = "@class.outer",
+                            ["ic"] = "@class.inner",
+                        },
+                        selection_modes = {
+                            ["@parameter.outer"] = "v",
+                            ["@function.outer"] = "V",
+                            ["@class.outer"] = "V",
+                        },
+                        include_surrounding_whitespace = true,
+                    },
+                    swap = {
+                        enable = true,
+                        swap_next = {
+                            ["<leader>j"] = "@function.outer",
+                            ["<leader>a"] = "@parameter.inner",
+                        },
+                        swap_previous = {
+                            ["<leader>k"] = "@function.outer",
+                            ["<leader>A"] = "@parameter.inner",
+                        },
+                    },
+                },
             })
         end,
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        dependencies = "nvim-treesitter/nvim-treesitter",
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-context",
+        opts = {
+            max_lines = 1,
+        },
     },
     {
         "windwp/nvim-ts-autotag",
@@ -166,12 +210,13 @@ return {
                 information = signs.diagnostics.Info,
             },
         },
+        -- stylua: ignore
         keys = {
-            { "<leader>xx", "<cmd>TroubleToggle<cr>" },
-            { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>" },
-            { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>" },
-            { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>" },
-            { "<leader>xl", "<cmd>TroubleToggle loclist<cr>" },
+            { "<leader>xx", "<cmd>TroubleToggle<cr>", desc = "Toggle trouble" },
+            { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace diagnostics" },
+            { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document diagnostics" },
+            { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix" },
+            { "<leader>xl", "<cmd>TroubleToggle loclist<cr>", desc = "Loclist" },
         },
         cmd = "Trouble",
     },
@@ -244,6 +289,7 @@ return {
                     })
                 end,
                 mode = { "n", "x" },
+                desc = "Select refactor",
             },
         },
         opts = {},
@@ -259,19 +305,11 @@ return {
     },
     {
         "Wansmer/treesj",
-        keys = { "<space>m", "<space>j", "<space>s" },
+        keys = {
+            { "<space>m", desc = "Toggle splitjoin" },
+        },
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         opts = {},
-    },
-    {
-        "rcarriga/nvim-notify",
-        lazy = false,
-        priority = 100,
-        config = function()
-            local notify = require("notify")
-            notify.setup({ top_down = false })
-            vim.notify = notify
-        end,
     },
     {
         "lukas-reineke/indent-blankline.nvim",
@@ -295,161 +333,6 @@ return {
         },
     },
     {
-        "nvim-tree/nvim-tree.lua",
-        keys = {
-            { "<C-s>", "<cmd>NvimTreeFindFileToggle<cr>" },
-        },
-        cmd = { "NvimTreeFindFileToggle" },
-        dependencies = "nvim-tree/nvim-web-devicons",
-        init = function()
-            vim.g.loaded_netrw = 1
-            vim.g.loaded_netrwPlugin = 1
-        end,
-        opts = {
-            sync_root_with_cwd = true,
-            respect_buf_cwd = true,
-            update_focused_file = {
-                enable = true,
-                update_root = true,
-            },
-            diagnostics = {
-                enable = true,
-                show_on_dirs = true,
-                show_on_open_dirs = false,
-                icons = {
-                    hint = signs.diagnostics.Hint,
-                    info = signs.diagnostics.Info,
-                    warning = signs.diagnostics.Warn,
-                    error = signs.diagnostics.Error,
-                },
-            },
-            modified = {
-                enable = true,
-                show_on_dirs = true,
-                show_on_open_dirs = false,
-            },
-            git = {
-                ignore = false,
-                show_on_dirs = true,
-                show_on_open_dirs = false,
-            },
-            sort_by = "case_sensitive",
-            reload_on_bufenter = true,
-            view = {
-                adaptive_size = true,
-            },
-            renderer = {
-                group_empty = true,
-                root_folder_label = false,
-            },
-            filters = {
-                dotfiles = false,
-            },
-            actions = {
-                open_file = {
-                    quit_on_open = true,
-                },
-            },
-        },
-    },
-    {
-        "utilyre/barbecue.nvim",
-        event = { "BufReadPre", "BufNewFile" },
-        version = "*",
-        dependencies = {
-            "SmiteshP/nvim-navic",
-            "nvim-tree/nvim-web-devicons", -- optional dependency
-        },
-        config = true,
-    },
-    {
-        "nvim-lualine/lualine.nvim",
-        event = { "BufReadPre", "BufNewFile" },
-        opts = {
-            options = {
-                globalstatus = true,
-            },
-            sections = {
-                lualine_a = {
-                    {
-                        "mode",
-                        fmt = function(res)
-                            return res:sub(1, 1)
-                        end,
-                    },
-                },
-                lualine_b = {
-                    "branch",
-                    {
-                        "diff",
-                        symbols = {
-                            added = signs.git.added,
-                            modified = signs.git.modified,
-                            removed = signs.git.removed,
-                        }, -- Changes the symbols used by the diff.
-                    },
-                    "diagnostics",
-                },
-                lualine_c = { "filename" },
-                lualine_x = { "encoding", "fileformat", "filetype" },
-                lualine_y = { "progress" },
-                lualine_z = { "location" },
-            },
-            extensions = { "nvim-tree", "quickfix" },
-        },
-    },
-    {
-        "akinsho/bufferline.nvim",
-        version = "*",
-        event = { "BufReadPre", "BufNewFile" },
-        opts = {
-            options = {
-                mode = "tabs",
-                diagnostics = "nvim_lsp",
-                offsets = {
-                    {
-                        filetype = "NvimTree",
-                        text = "File Explorer",
-                        text_align = "center",
-                        separator = true,
-                    },
-                    {
-                        filetype = "DiffviewFiles",
-                        text = "Source control",
-                        text_align = "center",
-                        separator = true,
-                    },
-                },
-            },
-        },
-    },
-    {
-        "petertriho/nvim-scrollbar",
-        event = { "BufReadPre", "BufNewFile" },
-        opts = {},
-        config = function()
-            local scrollbar = require("scrollbar")
-            local colors = require("tokyonight.colors").setup()
-
-            scrollbar.setup({
-                handle = {
-                    color = colors.fg_gutter,
-                },
-                marks = {
-                    Search = { color = colors.orange },
-                    Error = { color = colors.error },
-                    Warn = { color = colors.warning },
-                    Info = { color = colors.info },
-                    Hint = { color = colors.hint },
-                    Misc = { color = colors.purple },
-                },
-                handlers = {
-                    cursor = false,
-                },
-            })
-        end,
-    },
-    {
         "stevearc/dressing.nvim",
         opts = {
             input = {
@@ -457,5 +340,32 @@ return {
             },
         },
         event = "VeryLazy",
+    },
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        config = function()
+            local wk = require("which-key")
+            wk.register({
+                ["<leader>g"] = { name = "+git" },
+                ["<leader>x"] = { name = "+trouble" },
+                ["<leader>d"] = { name = "+debugger" },
+                ["<leader>h"] = { name = "+hunk" },
+                ["<leader>t"] = { name = "+test" },
+                ["<leader>w"] = { name = "+workspace" },
+            })
+        end,
+    },
+    {
+        "j-hui/fidget.nvim",
+        event = "VeryLazy",
+        opts = {
+            notification = {
+                override_vim_notify = true,
+                window = {
+                    winblend = 20,
+                },
+            },
+        },
     },
 }

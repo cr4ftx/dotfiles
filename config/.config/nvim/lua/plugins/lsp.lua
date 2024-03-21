@@ -1,4 +1,5 @@
 local icons = require("utils.signs")
+local map = require("utils.map")
 
 return {
     {
@@ -11,13 +12,11 @@ return {
             { "folke/neodev.nvim", opts = {} },
             { "folke/neoconf.nvim", opts = {} },
         },
+        -- stylua: ignore
         config = function()
-            local opts = { noremap = true, silent = true }
-
-            vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
-            vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-            vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-            vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
+            map("n", "[d", vim.diagnostic.goto_prev, { desc = "Goto next diagnostic" })
+            map("n", "]d", vim.diagnostic.goto_next, { desc = "Goto previous diagnostic" })
+            map("n", "<space>q", vim.diagnostic.setloclist, { desc = "Open loclist with diagnostics" })
 
             for name, icon in pairs(icons.diagnostics) do
                 name = "DiagnosticSign" .. name
@@ -29,18 +28,17 @@ return {
 
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-                -- stylua: ignore
                 callback = function()
                     -- Mappings.
-                    vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
-                    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                    vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
-                    vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
-                    vim.keymap.set("n", "<leader>wl", function()
+                    map("n", "<leader>D", vim.lsp.buf.type_definition, { desc = "Go to type definition" })
+                    map("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
+                    map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "Add workspace folder" })
+                    map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { desc = "Remove workspace folder" })
+                    map("n", "<leader>wl", function()
                         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                    end, opts)
-                    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-                    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+                    end, { desc = "List workspace folders" })
+                    map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
+                    map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
                 end,
             })
 
@@ -102,11 +100,6 @@ return {
                 end
             end
         end,
-    },
-    {
-        "mrded/nvim-lsp-notify",
-        opts = {},
-        event = "VeryLazy",
     },
     {
         "antosha417/nvim-lsp-file-operations",
