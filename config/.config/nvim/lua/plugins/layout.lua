@@ -3,6 +3,7 @@ local signs = require("utils.signs")
 return {
     {
         "nvim-tree/nvim-tree.lua",
+        event = "VeryLazy",
         -- stylua: ignore
         keys = {
             { "<c-s>", "<cmd>NvimTreeFindFileToggle<cr>", desc = "Toogle explorer" },
@@ -58,6 +59,11 @@ return {
                 open_file = {
                     quit_on_open = true,
                 },
+            },
+            filesystem_watchers = {
+                enable = true,
+                debounce_delay = 50,
+                ignore_dirs = { "node_modules", ".git" },
             },
         },
     },

@@ -14,15 +14,6 @@ return {
         },
     },
     {
-        "jay-babu/mason-null-ls.nvim",
-        event = { "VeryLazy" },
-        dependencies = {
-            "williamboman/mason.nvim",
-            "nvimtools/none-ls.nvim",
-        },
-        opts = { automatic_installation = true },
-    },
-    {
         "williamboman/mason-lspconfig.nvim",
         event = { "VeryLazy" },
         dependencies = { "williamboman/mason.nvim" },
@@ -33,5 +24,14 @@ return {
         event = { "VeryLazy" },
         dependencies = { "williamboman/mason.nvim" },
         opts = { ensure_installed = { "node2" } },
+    },
+    {
+        "zapling/mason-conform.nvim",
+        event = { "VeryLazy" },
+        dependencies = {
+            "williamboman/mason.nvim",
+            "stevearc/conform.nvim",
+        },
+        opts = {},
     },
 }

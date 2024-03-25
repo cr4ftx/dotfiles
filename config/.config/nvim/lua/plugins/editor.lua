@@ -8,6 +8,9 @@ local disable_filetypes = {
     "DiffviewFiles",
     "DressingInput",
     "DressingSelect",
+    "TelescopePrompt",
+    "lazy",
+    "mason",
 }
 
 return {
@@ -156,10 +159,12 @@ return {
     },
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
+        event = { "BufReadPre", "BufNewFile" },
         dependencies = "nvim-treesitter/nvim-treesitter",
     },
     {
         "nvim-treesitter/nvim-treesitter-context",
+        event = { "BufReadPre", "BufNewFile" },
         opts = {
             max_lines = 1,
         },
@@ -296,7 +301,7 @@ return {
     },
     {
         "RRethy/vim-illuminate",
-        event = "VeryLazy",
+        event = { "BufReadPre", "BufNewFile" },
         config = function()
             require("illuminate").configure({
                 filetypes_denylist = disable_filetypes,
@@ -350,10 +355,16 @@ return {
                 ["<leader>g"] = { name = "+git" },
                 ["<leader>x"] = { name = "+trouble" },
                 ["<leader>d"] = { name = "+debugger" },
-                ["<leader>h"] = { name = "+hunk" },
                 ["<leader>t"] = { name = "+test" },
                 ["<leader>w"] = { name = "+workspace" },
+                ["<leader>r"] = { name = "+refactor" },
+                ["<leader>h"] = { name = "+hunk" },
+                ["<leader>c"] = { name = "+code" },
             })
+        end,
+        init = function()
+            vim.opt.timeout = true
+            vim.opt.timeoutlen = 500
         end,
     },
     {

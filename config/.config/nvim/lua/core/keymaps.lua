@@ -1,5 +1,6 @@
 local map = require("utils.map")
-local M = require("utils.format")
+
+vim.g.mapleader = " "
 
 map("n", "<c-o>", "<c-o>zzzv")
 map("n", "<c-i>", "<c-i>zzzv")
@@ -9,5 +10,4 @@ map("n", "J", "mzJ`z")
 map("n", "<s-l>", "<cmd>tabnext<cr>", { desc = "Next tab" })
 map("n", "<s-h>", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
 map("t", "<esc>", "<C-\\><C-N>")
-map({ "n", "v" }, "<leader>f", M.format, { desc = "Format buffer" })
 map({ "n" }, "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })

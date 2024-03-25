@@ -1,5 +1,3 @@
-vim.g.mapleader = " "
-
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.hlsearch = false
@@ -21,5 +19,3 @@ vim.opt.expandtab = true
 vim.opt.pumheight = 20
 vim.opt.showmode = false
 vim.opt.mouse = ""
-vim.opt.timeout = true
-vim.opt.timeoutlen = 300
