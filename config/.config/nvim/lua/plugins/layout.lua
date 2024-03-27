@@ -1,4 +1,4 @@
-local signs = require("utils.signs")
+local icons = require("utils.signs")
 
 return {
     {
@@ -27,10 +27,10 @@ return {
                 show_on_dirs = true,
                 show_on_open_dirs = false,
                 icons = {
-                    hint = signs.diagnostics.Hint,
-                    info = signs.diagnostics.Info,
-                    warning = signs.diagnostics.Warn,
-                    error = signs.diagnostics.Error,
+                    hint = icons.diagnostics.Hint,
+                    info = icons.diagnostics.Info,
+                    warning = icons.diagnostics.Warn,
+                    error = icons.diagnostics.Error,
                 },
             },
             modified = {
@@ -73,7 +73,7 @@ return {
         version = "*",
         dependencies = {
             "SmiteshP/nvim-navic",
-            "nvim-tree/nvim-web-devicons", -- optional dependency
+            "nvim-tree/nvim-web-devicons",
         },
         config = true,
     },
@@ -83,6 +83,8 @@ return {
         opts = {
             options = {
                 globalstatus = true,
+                component_separators = { left = "", right = "" },
+                section_separators = { left = "", right = "" },
             },
             sections = {
                 lualine_a = {
@@ -98,9 +100,9 @@ return {
                     {
                         "diff",
                         symbols = {
-                            added = signs.git.added,
-                            modified = signs.git.modified,
-                            removed = signs.git.removed,
+                            added = icons.git.added,
+                            modified = icons.git.modified,
+                            removed = icons.git.removed,
                         }, -- Changes the symbols used by the diff.
                     },
                     "diagnostics",
@@ -110,7 +112,20 @@ return {
                 lualine_y = { "progress" },
                 lualine_z = { "location" },
             },
-            extensions = { "nvim-tree", "quickfix" },
+            extensions = {
+                "nvim-tree",
+                "quickfix",
+                "mason",
+                "lazy",
+                "man",
+                "trouble",
+                {
+                    sections = {
+                        lualine_a = { "filetype" },
+                    },
+                    filetypes = { "TelescopePrompt" },
+                },
+            },
         },
     },
     {
@@ -147,6 +162,7 @@ return {
             options = {
                 mode = "tabs",
                 diagnostics = "nvim_lsp",
+                always_show_bufferline = true,
                 offsets = {
                     {
                         filetype = "NvimTree",

@@ -7,7 +7,6 @@ fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_DEFAULT_SESSION_NAME=cr4ftx
-ZSH_TMUX_AUTOCONNECT=false
 
 plugins=(tmux git sudo terraform vi-mode docker-compose docker yarn)
 
