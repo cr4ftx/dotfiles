@@ -73,6 +73,7 @@ return {
                 "jedi_language_server",
                 "terraformls",
                 "eslint",
+                "biome",
                 {
                     "graphql",
                     filetypes = {

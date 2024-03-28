@@ -16,6 +16,9 @@ return {
             vim.g.loaded_netrwPlugin = 1
         end,
         opts = {
+            hijack_cursor = true,
+            hijack_unnamed_buffer_when_opening = true,
+            select_prompts = true,
             sync_root_with_cwd = true,
             respect_buf_cwd = true,
             update_focused_file = {
@@ -47,10 +50,16 @@ return {
             reload_on_bufenter = true,
             view = {
                 adaptive_size = true,
+                centralize_selection = true,
+                number = true,
+                relativenumber = true,
             },
             renderer = {
                 group_empty = true,
                 root_folder_label = false,
+                indent_markers = {
+                    enable = true,
+                },
             },
             filters = {
                 dotfiles = false,
@@ -63,7 +72,7 @@ return {
             filesystem_watchers = {
                 enable = true,
                 debounce_delay = 50,
-                ignore_dirs = { "node_modules", ".git" },
+                ignore_dirs = { "node_modules", ".git", "build", "dist" },
             },
         },
     },
@@ -124,6 +133,13 @@ return {
                         lualine_a = { "filetype" },
                     },
                     filetypes = { "TelescopePrompt" },
+                },
+                {
+                    sections = {
+                        lualine_a = { "filetype" },
+                        lualine_b = { "branch" },
+                    },
+                    filetypes = { "NeogitStatus", "NeogitPopup" },
                 },
             },
         },
