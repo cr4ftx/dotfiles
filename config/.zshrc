@@ -8,7 +8,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_DEFAULT_SESSION_NAME=cr4ftx
 
-plugins=(tmux git sudo terraform vi-mode docker-compose docker yarn)
+plugins=(zsh-autosuggestions zsh-syntax-highlighting tmux git sudo terraform vi-mode docker-compose docker yarn)
 
 source $ZSH/oh-my-zsh.sh
 
