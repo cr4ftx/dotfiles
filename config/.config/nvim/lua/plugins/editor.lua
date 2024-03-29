@@ -367,16 +367,4 @@ return {
             vim.opt.timeoutlen = 500
         end,
     },
-    {
-        "j-hui/fidget.nvim",
-        event = "VeryLazy",
-        opts = {
-            notification = {
-                override_vim_notify = true,
-                window = {
-                    winblend = 20,
-                },
-            },
-        },
-    },
 }

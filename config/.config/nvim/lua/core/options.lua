@@ -19,3 +19,4 @@ vim.opt.expandtab = true
 vim.opt.pumheight = 20
 vim.opt.showmode = false
 vim.opt.mouse = ""
+vim.opt.scrolloff = 999
