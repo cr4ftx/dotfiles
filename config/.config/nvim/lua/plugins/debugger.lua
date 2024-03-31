@@ -14,35 +14,41 @@ return {
   },
   config = function()
     local dap = require("dap")
+
     dap.adapters = {
-      node2 = {
-        type = "executable",
-        command = "node",
-        args = {
-          vim.fn.stdpath("data") .. "/mason/packages/node-debug2-adapter/out/src/nodeDebug.js",
+      ["pwa-node"] = {
+        type = "server",
+        host = "localhost",
+        port = "${port}",
+        executable = {
+          command = "node",
+          args = {
+            vim.fn.stdpath("data")
+              .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
+            "${port}",
+          },
         },
       },
     }
-    local javascript = {
-      {
-        type = "node2",
-        request = "launch",
-        name = "Launch node",
-        program = "${file}",
-        cwd = "${workspaceFolder}",
-      },
-      {
-        type = "node2",
-        request = "attach",
-        name = "Attach node",
-        program = "${file}",
-        cwd = "${workspaceFolder}",
-      },
-    }
-    dap.configurations = {
-      javascript = javascript,
-      typescript = javascript,
-    }
+
+    for _, language in ipairs({ "typescript", "javascript" }) do
+      dap.configurations[language] = {
+        {
+          type = "pwa-node",
+          request = "launch",
+          name = "Launch node",
+          program = "${file}",
+          cwd = "${workspaceFolder}",
+        },
+        {
+          type = "pwa-node",
+          request = "attach",
+          name = "Attach node",
+          program = "${file}",
+          cwd = "${workspaceFolder}",
+        },
+      }
+    end
 
     vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
@@ -73,6 +79,6 @@ return {
       { "<leader>dr", function() require("dap").repl.toggle() end, desc = "Toggle REPL" },
       { "<leader>ds", function() require("dap").session() end, desc = "Session" },
       { "<leader>dt", function() require("dap").terminate() end, desc = "Terminate" },
-      { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "Widgets" },
+      { "<leader>dh", function() require("dap.ui.widgets").hover() end, desc = "Widgets" },
     },
 }

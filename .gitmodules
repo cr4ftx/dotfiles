@@ -1,6 +1,0 @@
-[submodule "tpm"]
-	path = config/.tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
-[submodule "ohmyzsh"]
-	path = config/.oh-my-zsh
-	url = https://github.com/ohmyzsh/ohmyzsh

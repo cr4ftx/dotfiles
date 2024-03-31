@@ -22,8 +22,12 @@ return {
   {
     "jay-babu/mason-nvim-dap.nvim",
     event = { "VeryLazy" },
-    dependencies = { "williamboman/mason.nvim" },
-    opts = { ensure_installed = { "node2" } },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "mfussenegger/nvim-dap",
+    },
+    -- https://github.com/jay-babu/mason-nvim-dap.nvim/blob/main/lua/mason-nvim-dap/mappings/source.lua
+    opts = { ensure_installed = { "js" } },
   },
   {
     "zapling/mason-conform.nvim",

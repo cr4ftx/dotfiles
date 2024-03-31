@@ -30,6 +30,7 @@ sudo pacman -S curl git neovim zsh tmux kitty stow ripgrep
 > Install brew https://docs.brew.sh/Installation
 
 ```bash
+brew install gawk grep gnu-sed coreutils # for fzf tab completion
 brew install curl git neovim zsh tmux stow ripgrep kitty font-meslo-lg-nerd-font
 ```
 
@@ -38,5 +39,5 @@ brew install curl git neovim zsh tmux stow ripgrep kitty font-meslo-lg-nerd-font
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/cr4ftx/dotfiles/master/install.sh)"
 # or custom destination dir
-bash -c "DEST_DIR=[PATH_FOLDER] $(curl -fsSL https://raw.githubusercontent.com/cr4ftx/dotfiles/master/install.sh)"
+bash -c "DOTFILES_DIR=[PATH_FOLDER] $(curl -fsSL https://raw.githubusercontent.com/cr4ftx/dotfiles/master/install.sh)"
 ```

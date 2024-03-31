@@ -91,6 +91,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       options = {
+        theme = "tokyonight",
         globalstatus = true,
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
@@ -112,9 +113,18 @@ return {
               added = icons.git.added,
               modified = icons.git.modified,
               removed = icons.git.removed,
-            }, -- Changes the symbols used by the diff.
+            },
           },
-          "diagnostics",
+          {
+            "diagnostics",
+            sources = { "nvim_diagnostic" },
+            symbols = {
+              error = icons.diagnostics.Error .. " ",
+              warn = icons.diagnostics.Warn .. " ",
+              info = icons.diagnostics.Info .. " ",
+              hint = icons.diagnostics.Hint .. " ",
+            },
+          },
         },
         lualine_c = { "filename" },
         lualine_x = { "encoding", "fileformat", "filetype" },
