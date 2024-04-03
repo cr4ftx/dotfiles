@@ -31,6 +31,8 @@ return {
         scss = { "prettierd" },
         sql = { "sql_formatter" },
         sh = { "beautysh" },
+        bash = { "beautysh" },
+        zsh = { "beautysh" },
       },
       format_on_save = {
         timeout_ms = 500,

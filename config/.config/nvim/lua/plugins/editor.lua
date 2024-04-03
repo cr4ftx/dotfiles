@@ -49,12 +49,11 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
-    version = "0.1.2",
+    version = "0.1.6",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "folke/trouble.nvim",
     },
-    -- stylua: ignore
     keys = {
       { "<C-p>", "<cmd>Telescope find_files<cr>", desc = "Find files" },
       { "<C-g>", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },

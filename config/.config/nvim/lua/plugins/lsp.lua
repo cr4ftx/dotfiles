@@ -12,7 +12,6 @@ return {
       { "folke/neodev.nvim", opts = {} },
       { "folke/neoconf.nvim", opts = {} },
     },
-    -- stylua: ignore
     config = function()
       map("n", "[d", vim.diagnostic.goto_prev, { desc = "Goto next diagnostic" })
       map("n", "]d", vim.diagnostic.goto_next, { desc = "Goto previous diagnostic" })
@@ -25,17 +24,18 @@ return {
 
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-        callback = function()
+        -- stylua: ignore
+        callback = function(ev)
           -- Mappings.
-          map("n", "<leader>D", vim.lsp.buf.type_definition, { desc = "Go to type definition" })
-          map("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
-          map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "Add workspace folder" })
-          map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { desc = "Remove workspace folder" })
+          map("n", "<leader>D", vim.lsp.buf.type_definition, { buffer = ev.buf,  desc = "Go to type definition" })
+          map("n", "K", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover" })
+          map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { buffer = ev.buf, desc = "Add workspace folder" })
+          map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { buffer = ev.buf, desc = "Remove workspace folder" })
           map("n", "<leader>wl", function()
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-          end, { desc = "List workspace folders" })
-          map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
-          map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
+          end, { buffer = ev.buf, desc = "List workspace folders" })
+          map("n", "<leader>rn", vim.lsp.buf.rename, { buffer = ev.buf, desc = "Rename" })
+          map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = ev.buf, desc = "Code actions" })
         end,
       })
 
@@ -62,6 +62,7 @@ return {
           root_dir = lspconfig.util.root_pattern("tailwind.config.js"),
         },
         "dockerls",
+        "taplo",
         "jedi_language_server",
         "terraformls",
         "eslint",

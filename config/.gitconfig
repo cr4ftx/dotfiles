@@ -1,10 +1,55 @@
 [core]
-    editor = nvim
+  editor = nvim
+  pager = delta
+
 [pull]
-    rebase = true
+  rebase = true
+
 [rebase]
-    autoStash = true
+  autoStash = true
+
+[interactive]
+  diffFilter = delta --color-only
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
+
 [includeIf "gitdir:~/work/"]
   path = ~/.gitconfig-work
+
 [includeIf "gitdir:~/.dotfiles/"]
   path = ~/.gitconfig-personal
+
+[delta]
+  navigate = true
+  features = decorations
+  syntax-theme = "tokyonight_storm"
+  line-numbers = true
+  side-by-side = true
+  true-color = always
+  minus-style = syntax "#3f2d3d"
+  minus-non-emph-style = syntax "#3f2d3d"
+  minus-emph-style = syntax "#763842"
+  minus-empty-line-marker-style = syntax "#3f2d3d"
+  line-numbers-minus-style = "#b2555b"
+  plus-style = syntax "#283b4d"
+  plus-non-emph-style = syntax "#283b4d"
+  plus-emph-style = syntax "#316172"
+  plus-empty-line-marker-style = syntax "#283b4d"
+  line-numbers-plus-style = "#266d6a"
+  line-numbers-zero-style = "#3b4261"
+
+[delta "interactive"]
+  keep-plus-minus-markers = false
+
+[delta "decorations"]
+  commit-decoration-style = blue ol
+  commit-style = raw
+  file-style = omit
+  hunk-header-decoration-style = purple box
+  hunk-header-file-style = blue
+  hunk-header-line-number-style = green
+  hunk-header-style = file line-number syntax

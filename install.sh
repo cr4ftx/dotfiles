@@ -54,7 +54,7 @@ EOF
     println "$RESET"
 }
 
-update_tag () {
+update_tag() {
     local LATEST_TAG=${LATEST_TAG:-false}
     if [[ "$LATEST_TAG" == "true" ]]; then
         pushd "$1" >& /dev/null
@@ -66,7 +66,7 @@ update_tag () {
 
 }
 
-install_plugin () {
+install_plugin() {
     if [ -d "$2" ]; then
         info "$1 already installed"
         update_tag $2
@@ -79,6 +79,12 @@ install_plugin () {
     update_tag $2
 
     return 0
+}
+
+install_fzf() {
+    if [[ ! -f ~/.fzf/bin/fzf ]]; then
+        ~/.fzf/install
+    fi
 }
 
 link_dotfiles() {
@@ -112,7 +118,7 @@ main() {
     install_plugin "FZF" ~/.fzf https://github.com/junegunn/fzf.git
     LATEST_TAG=true install_plugin "TPM" ~/.tmux/plugins/tpm https://github.com/tmux-plugins/tpm
     LATEST_TAG=true install_plugin "NVM" ~/.nvm https://github.com/nvm-sh/nvm.git
-    ~/.fzf/install
+    install_fzf
 
     link_dotfiles
     change_shell
