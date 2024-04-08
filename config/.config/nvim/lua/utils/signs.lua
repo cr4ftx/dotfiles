@@ -7,15 +7,15 @@ return {
     LogPoint = ".>",
   },
   diagnostics = {
-    Hint = "",
-    Info = "",
-    Warn = "",
-    Error = "",
+    Hint = "󰵛",
+    Info = "",
+    Warn = "",
+    Error = "",
   },
   git = {
-    added = " ",
-    modified = " ",
-    removed = " ",
+    added = "󰜄 ",
+    modified = "󰱒 ",
+    removed = "󰛲 ",
   },
   dashboard = {
     [[                                                                       ]],

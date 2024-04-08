@@ -1,62 +1,56 @@
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+export AWS_PAGER=""
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# Tmux config
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_DEFAULT_SESSION_NAME=cr4ftx
+
+# Zoxide config
+ZOXIDE_CMD_OVERRIDE=cd
+
+# Fzf config
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_OPTS=" \
+    --height 99% \
+    --layout=reverse \
+    --color=fg:#c0caf5,bg:#24283b,hl:#ff9e64 \
+    --color=fg+:#c0caf5,bg+:#292e42,hl+:#ff9e64 \
+    --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff \
+    --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a"
+export FZF_CTRL_T_OPTS="\
+    --walker-skip .git,node_modules,target,bin,build,dist \
+    --preview 'fzf-preview.sh {}'"
+
+zstyle ':omz:plugins:nvm' lazy yes
 
 plugins=(
     sudo
     vi-mode
+    brew # always place brew before tmux if tmux is installed through brew
     tmux
     zsh-autosuggestions
     zsh-syntax-highlighting
     git
     terraform
-    docker-compose
     docker
     yarn
     nvm
-    npm
-    brew
-    ripgrep
+    fzf
+    starship
+    zoxide
 )
 
 source $ZSH/oh-my-zsh.sh
 
-# set better pager with bat
-export AWS_PAGER=""
-if command -v bat &> /dev/null; then
-    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-fi
-
-# load scripts
-if [[ -d /opt/homebrew/bin ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-if [[ -d /home/linuxbrew/.linuxbrew/bin ]]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
-
-if command -v zoxide >& /dev/null; then
-    eval "$(zoxide init zsh --cmd cd)"
-fi
-
-export NVM_DIR="$HOME/.nvm"
-[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
-
-[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-if [[ -d ~/.fzf-tab-completion ]]; then
-    source ~/.fzf-tab-completion/zsh/fzf-zsh-completion.sh
-fi
+command -v bat &> /dev/null && export MANPAGER="sh -c 'col -bx | bat -l man -p'" # set better man page with bat
+[[ -d ~/.fzf-tab-completion ]] && source ~/.fzf-tab-completion/zsh/fzf-zsh-completion.sh # tab completion with fzf
 
 # add zsh hook to auto change node version based on .nvmrc
 autoload -U add-zsh-hook
 load-nvmrc() {
+    nvm &> /dev/null # run nvm to load it
     local node_version="$(nvm version)"
     local nvmrc_path="$(nvm_find_nvmrc)"
 
@@ -75,14 +69,17 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 
-# aliases
+# some aliases
+alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+
 alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
+
 if command -v eza &> /dev/null; then
+    alias ls="eza"
     alias ll="eza --long --icons --group --git --total-size"
     alias l="eza --long --icons --group --git --total-size --all"
     alias tree="eza --tree --icons --git --ignore-glob=.git --all"
 fi
-alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
-alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'

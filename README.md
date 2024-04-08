@@ -9,23 +9,18 @@
 ```bash
 sudo add-apt-repository ppa:mmstick76/kitty
 sudo apt update
-sudo apt install kitty alacritty
+sudo apt install git-delta bat eza starship
+sudo apt install kitty
+sudo apt install alacritty
 sudo apt install curl git neovim zsh tmux stow ripgrep
-```
-
-### Fedora
-
-```bash
-sudo dnf copr enable pschyska/kitty
-sudo kitty alacritty
-sudo dnf install curl git neovim zsh tmux stow ripgrep
 ```
 
 ### Arch based
 
 ```bash
-sudo pacman -S git-delta bat eza
-sudo pacman -S kitty alacritty
+sudo pacman -S git-delta bat eza starship
+sudo pacman -S kitty
+sudo pacman -S alacritty
 sudo pacman -S curl git neovim zsh tmux stow ripgrep
 ```
 
@@ -34,9 +29,14 @@ sudo pacman -S curl git neovim zsh tmux stow ripgrep
 > Install brew https://docs.brew.sh/Installation
 
 ```bash
-brew install gawk grep gnu-sed coreutils # for fzf tab completion
-brew install git-delta bat eza # better git highlighting, cat and ls
-brew install kitty alacritty # better terminal emulator
+# for fzf tab completion
+brew install gawk grep gnu-sed coreutils
+# tooling
+brew install git-delta bat eza starship
+# better terminal emulator
+brew install kitty
+brew install alacritty
+# required
 brew install curl git neovim zsh tmux stow ripgrep
 ```
 

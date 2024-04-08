@@ -17,11 +17,6 @@ return {
     keys = { "cr", "gcr" },
   },
   {
-    "numToStr/Comment.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    config = true,
-  },
-  {
     "kylechui/nvim-surround",
     version = "*",
     event = "InsertEnter",

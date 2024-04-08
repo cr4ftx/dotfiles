@@ -67,12 +67,12 @@ return {
     cmd = "Telescope",
     config = function()
       local telescope = require("telescope")
-      local trouble = require("trouble.providers.telescope")
+      local trouble = require("trouble.sources.telescope")
       telescope.setup({
         defaults = {
           mappings = {
-            i = { ["<c-q>"] = trouble.smart_open_with_trouble },
-            n = { ["<c-q>"] = trouble.smart_open_with_trouble },
+            i = { ["<c-q>"] = trouble.open },
+            n = { ["<c-q>"] = trouble.open },
           },
           file_ignore_patterns = { "^.git/" },
           vimgrep_arguments = {
@@ -168,9 +168,10 @@ return {
     opts = { "css", "sass", "scss", "html" },
   },
   {
-    "ellisonleao/glow.nvim",
-    config = true,
-    cmd = "Glow",
+    "MeanderingProgrammer/markdown.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    ft = { "markdown" },
+    opts = {},
   },
   {
     "folke/trouble.nvim",

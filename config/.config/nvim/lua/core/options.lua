@@ -20,3 +20,4 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.mouse = ""
 vim.opt.startofline = true
+vim.opt.splitright = true

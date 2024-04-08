@@ -22,6 +22,7 @@ return {
         typescript = { "prettierd" },
         typescriptreact = { "prettierd" },
         json = { "prettierd" },
+        jsonc = { "prettierd" },
         yaml = { "prettierd" },
         graphql = { "prettierd" },
         html = { "prettierd" },
