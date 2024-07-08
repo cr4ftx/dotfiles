@@ -24,6 +24,7 @@ export FZF_CTRL_T_OPTS="\
     --preview 'fzf-preview.sh {}'"
 
 zstyle ':omz:plugins:nvm' lazy yes
+zstyle ':omz:plugins:nvm' lazy-cmd git nvim
 
 plugins=(
     sudo
