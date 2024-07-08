@@ -57,10 +57,10 @@ return {
         "jsonls",
         "yamlls",
         -- "cssmodules_ls",
-        {
-          "tailwindcss",
-          root_dir = lspconfig.util.root_pattern("tailwind.config.js"),
-        },
+        -- {
+        --   "tailwindcss",
+        --   root_dir = lspconfig.util.root_pattern("tailwind.config.js"),
+        -- },
         "dockerls",
         "taplo",
         "jedi_language_server",
@@ -75,6 +75,7 @@ return {
             "javascriptreact",
           },
         },
+        "pbls",
       }
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()

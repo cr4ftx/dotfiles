@@ -34,6 +34,7 @@ return {
         sh = { "beautysh" },
         bash = { "beautysh" },
         zsh = { "beautysh" },
+        proto = { "buf" },
       },
       format_on_save = {
         timeout_ms = 500,

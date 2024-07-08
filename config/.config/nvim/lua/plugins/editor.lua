@@ -321,15 +321,15 @@ return {
     event = "VeryLazy",
     config = function()
       local wk = require("which-key")
-      wk.register({
-        ["<leader>g"] = { name = "+git" },
-        ["<leader>x"] = { name = "+trouble" },
-        ["<leader>d"] = { name = "+debugger" },
-        ["<leader>t"] = { name = "+test" },
-        ["<leader>w"] = { name = "+workspace" },
-        ["<leader>r"] = { name = "+refactor" },
-        ["<leader>h"] = { name = "+hunk" },
-        ["<leader>c"] = { name = "+code" },
+      wk.add({
+        { "<leader>g", group = "git" },
+        { "<leader>x", group = "trouble" },
+        { "<leader>d", group = "debugger" },
+        { "<leader>t", group = "test" },
+        { "<leader>w", group = "workspace" },
+        { "<leader>r", group = "refactor" },
+        { "<leader>h", group = "hunk" },
+        { "<leader>c", group = "code" },
       })
     end,
     init = function()

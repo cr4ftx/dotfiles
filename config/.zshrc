@@ -24,6 +24,7 @@ export FZF_CTRL_T_OPTS="\
     --preview 'fzf-preview.sh {}'"
 
 zstyle ':omz:plugins:nvm' lazy yes
+zstyle ':omz:plugins:nvm' lazy-cmd git nvim
 
 plugins=(
     sudo
@@ -79,7 +80,7 @@ alias vim="nvim"
 
 if command -v eza &> /dev/null; then
     alias ls="eza"
-    alias ll="eza --long --icons --group --git --total-size"
-    alias l="eza --long --icons --group --git --total-size --all"
-    alias tree="eza --tree --icons --git --ignore-glob=.git --all"
+    alias ll="eza --long --icons --group --git"
+    alias l="eza --long --icons --group --git --all"
+    alias tree="eza --tree --icons --git --ignore-glob=.git,node_modules --all"
 fi
