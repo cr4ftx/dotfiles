@@ -168,7 +168,7 @@ return {
     opts = { "css", "sass", "scss", "html" },
   },
   {
-    "MeanderingProgrammer/markdown.nvim",
+    "MeanderingProgrammer/render-markdown.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     ft = { "markdown" },
     opts = {},
@@ -287,27 +287,6 @@ return {
     opts = {},
   },
   {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = {
-      scope = {
-        show_start = false,
-        show_end = false,
-      },
-      exclude = {
-        filetypes = {
-          "lspinfo",
-          "checkhealth",
-          "help",
-          "man",
-          "gitcommit",
-          unpack(disable_filetypes),
-        },
-      },
-    },
-  },
-  {
     "stevearc/dressing.nvim",
     opts = {
       input = {
@@ -336,5 +315,19 @@ return {
       vim.opt.timeout = true
       vim.opt.timeoutlen = 500
     end,
+  },
+  {
+    "folke/snacks.nvim",
+    ---@type snacks.Config
+    opts = {
+      indent = {},
+      image = {},
+      scroll = {
+        animate = {
+          duration = { step = 15, total = 100 },
+          easing = "linear",
+        },
+      },
+    },
   },
 }

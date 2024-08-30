@@ -23,6 +23,9 @@
 [includeIf "gitdir:~/.dotfiles/"]
   path = ~/.gitconfig-personal
 
+[includeIf "gitdir:~/perso/"]
+  path = ~/.gitconfig-personal
+
 [delta]
   navigate = true
   features = decorations
