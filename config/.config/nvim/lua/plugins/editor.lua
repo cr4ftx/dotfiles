@@ -249,27 +249,6 @@ return {
     opts = {},
   },
   {
-    "ThePrimeagen/refactoring.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    cmd = "Refactor",
-    keys = {
-      {
-        "<leader>rr",
-        function()
-          require("refactoring").select_refactor({
-            show_success_message = true,
-          })
-        end,
-        mode = { "n", "x" },
-        desc = "Select refactor",
-      },
-    },
-    opts = {},
-  },
-  {
     "RRethy/vim-illuminate",
     event = { "BufReadPre", "BufNewFile" },
     config = function()

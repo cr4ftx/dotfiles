@@ -27,9 +27,9 @@ zstyle ':omz:plugins:nvm' lazy yes
 zstyle ':omz:plugins:nvm' lazy-cmd git nvim
 
 plugins=(
+    brew # always place brew before tmux if tmux is installed with brew
     sudo
     vi-mode
-    brew # always place brew before tmux if tmux is installed through brew
     tmux
     zsh-autosuggestions
     zsh-syntax-highlighting
@@ -41,6 +41,7 @@ plugins=(
     fzf
     starship
     zoxide
+    gpg-agent
 )
 
 source $ZSH/oh-my-zsh.sh
