@@ -3,13 +3,23 @@ local map = require("utils.map")
 
 return {
   {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
     event = { "VeryLazy" },
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/cmp-nvim-lsp",
+      "saghen/blink.cmp",
       "b0o/schemastore.nvim",
-      { "folke/neodev.nvim", opts = {} },
       { "folke/neoconf.nvim", opts = {} },
     },
     config = function()
@@ -45,7 +55,7 @@ return {
         "bashls",
         {
           "ts_ls",
-          root_dir = lspconfig.util.find_package_json_ancestor,
+          root_dir = lspconfig.util.root_pattern("package.json"),
           single_file_support = false,
         },
         {
@@ -78,7 +88,7 @@ return {
         "pbls",
       }
 
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       for _, lsp in ipairs(servers) do
         local lsp_type = type(lsp)
