@@ -37,7 +37,7 @@ brew install git-delta bat eza starship
 brew install kitty
 brew install alacritty
 # required
-brew install curl git neovim zsh tmux stow ripgrep
+brew install curl git neovim zsh tmux stow ripgrep fzf
 ```
 
 ## Installation

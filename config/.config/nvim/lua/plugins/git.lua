@@ -1,3 +1,4 @@
+local map = require("utils.map")
 return {
   {
     "sindrets/diffview.nvim",
@@ -31,61 +32,77 @@ return {
       },
     },
     config = function(_, opts)
-      local gs = require("gitsigns")
+      local gitsigns = require("gitsigns")
       local ok, sb = pcall(require, "scrollbar.handlers.gitsigns")
       if ok then
         sb.setup()
       end
 
       opts.on_attach = function(bufnr)
-        local map = function(mode, l, r, mOpts)
-          mOpts = mOpts or {}
-          mOpts.buffer = bufnr
-          vim.keymap.set(mode, l, r, mOpts)
-        end
-
         -- Navigation
         map("n", "]g", function()
           if vim.wo.diff then
-            return "]g"
+            vim.cmd.normal({ "]g", bang = true })
+          else
+            gitsigns.nav_hunk("next")
           end
-          vim.schedule(function()
-            gs.next_hunk()
-          end)
-          return "<Ignore>"
         end, {
+          buffer = bufnr,
           expr = true,
           desc = "Go to next hunk",
         })
 
         map("n", "[g", function()
           if vim.wo.diff then
-            return "[g"
+            vim.cmd.normal({ "[g", bang = true })
+          else
+            gitsigns.nav_hunk("prev")
           end
-          vim.schedule(function()
-            gs.prev_hunk()
-          end)
-          return "<Ignore>"
         end, {
+          buffer = bufnr,
           expr = true,
           desc = "Go to previous hunk",
         })
 
         -- Actions
-        map({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>", { desc = "Stage hunk" })
-        map({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>", { desc = "Reset hunk" })
-        map("n", "<leader>hS", gs.stage_buffer, { desc = "Stage current buffer" })
-        map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "Undo stage hunk" })
-        map("n", "<leader>hR", gs.reset_buffer, { desc = "Reset current buffer" })
-        map("n", "<leader>hp", gs.preview_hunk, { desc = "Preview hunk" })
-        map("n", "<leader>hd", gs.diffthis, { desc = "Diff current buffer" })
+        map({ "n", "v" }, "<leader>hs", gitsigns.stage_hunk, {
+          buffer = bufnr,
+          desc = "Toggle stage hunk",
+        })
+        map({ "n", "v" }, "<leader>hr", gitsigns.reset_hunk, {
+          buffer = bufnr,
+          desc = "Reset hunk",
+        })
+        map("n", "<leader>hb", function()
+          gitsigns.blame_line({ full = true })
+        end, {
+          buffer = bufnr,
+          desc = "Full blame line",
+        })
+        map("n", "<leader>hi", gitsigns.preview_hunk_inline)
+        map("n", "<leader>hS", gitsigns.stage_buffer, {
+          buffer = bufnr,
+          desc = "Stage current buffer",
+        })
+        map("n", "<leader>hR", gitsigns.reset_buffer, {
+          buffer = bufnr,
+          desc = "Reset current buffer",
+        })
+        map("n", "<leader>hp", gitsigns.preview_hunk, {
+          buffer = bufnr,
+          desc = "Preview hunk",
+        })
+        map("n", "<leader>hd", gitsigns.diffthis, {
+          buffer = bufnr,
+          desc = "Diff current buffer",
+        })
 
         -- Text object
-        map({ "o", "x" }, "ig", ":<C-U>Gitsigns select_hunk<CR>")
-        map({ "o", "x" }, "ag", ":<C-U>Gitsigns select_hunk<CR>")
+        map({ "o", "x" }, "ig", gitsigns.select_hunk)
+        map({ "o", "x" }, "ag", gitsigns.select_hunk)
       end
 
-      gs.setup(opts)
+      gitsigns.setup(opts)
     end,
   },
   {

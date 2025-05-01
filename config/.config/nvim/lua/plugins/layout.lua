@@ -3,11 +3,12 @@ local icons = require("utils.signs")
 return {
   {
     "nvim-tree/nvim-tree.lua",
-    event = "VeryLazy",
-    -- stylua: ignore
     keys = {
-      { "<c-s>", "<cmd>NvimTreeFindFileToggle<cr>", desc = "Toogle explorer" },
-      { "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", desc = "Toogle explorer" },
+      {
+        "<leader>e",
+        "<cmd>NvimTreeFindFileToggle<cr>",
+        desc = "Toogle explorer",
+      },
     },
     cmd = { "NvimTreeFindFileToggle" },
     dependencies = "nvim-tree/nvim-web-devicons",
