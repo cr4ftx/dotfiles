@@ -81,12 +81,6 @@ install_plugin() {
     return 0
 }
 
-install_fzf() {
-    if [[ ! -f ~/.fzf/bin/fzf ]]; then
-        ~/.fzf/install
-    fi
-}
-
 link_dotfiles() {
     info "Linking config files"
     mkdir -p \
@@ -113,12 +107,9 @@ main() {
     install_plugin "Oh My Zsh" ~/.oh-my-zsh https://github.com/ohmyzsh/ohmyzsh
     install_plugin "ZSH autosuggestions" ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions
     install_plugin "ZSH syntax highlighting" ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting.git
-    install_plugin "FZF" ~/.fzf https://github.com/junegunn/fzf.git
-    install_plugin "FZF tab completion" ~/.fzf-tab-completion https://github.com/lincheney/fzf-tab-completion
-    install_plugin "Powerlevel10k" ~/.oh-my-zsh/custom/themes/powerlevel10k https://github.com/romkatv/powerlevel10k.git
+    install_plugin "FZF tab"  ~/.oh-my-zsh/custom/plugins/fzf-tab https://github.com/Aloxaf/fzf-tab
     LATEST_TAG=true install_plugin "TPM" ~/.tmux/plugins/tpm https://github.com/tmux-plugins/tpm
     LATEST_TAG=true install_plugin "NVM" ~/.nvm https://github.com/nvm-sh/nvm.git
-    install_fzf
 
     link_dotfiles
     change_shell

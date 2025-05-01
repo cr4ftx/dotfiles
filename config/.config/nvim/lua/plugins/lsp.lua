@@ -4,12 +4,13 @@ local map = require("utils.map")
 return {
   {
     "folke/lazydev.nvim",
-    ft = "lua", -- only load on lua files
+    ft = "lua",
     opts = {
       library = {
-        -- See the configuration section for more details
-        -- Load luvit types when the `vim.uv` word is found
-        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        {
+          path = "${3rd}/luv/library",
+          words = { "vim%.uv" },
+        },
       },
     },
   },
@@ -23,9 +24,11 @@ return {
       { "folke/neoconf.nvim", opts = {} },
     },
     config = function()
-      map("n", "[d", vim.diagnostic.goto_prev, { desc = "Goto next diagnostic" })
-      map("n", "]d", vim.diagnostic.goto_next, { desc = "Goto previous diagnostic" })
-      map("n", "<space>q", vim.diagnostic.setloclist, { desc = "Open loclist with diagnostics" })
+      vim.diagnostic.config({
+        float = true,
+        jump = { float = true },
+        virtual_text = true,
+      })
 
       for name, icon in pairs(icons.diagnostics) do
         name = "DiagnosticSign" .. name
@@ -36,46 +39,65 @@ return {
         group = vim.api.nvim_create_augroup("UserLspConfig", {}),
         -- stylua: ignore
         callback = function(ev)
-          -- Mappings.
-          map("n", "<leader>D", vim.lsp.buf.type_definition, { buffer = ev.buf,  desc = "Go to type definition" })
-          map("n", "K", vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover" })
-          map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { buffer = ev.buf, desc = "Add workspace folder" })
-          map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { buffer = ev.buf, desc = "Remove workspace folder" })
-          map("n", "<leader>wl", function()
-            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-          end, { buffer = ev.buf, desc = "List workspace folders" })
           map("n", "<leader>rn", vim.lsp.buf.rename, { buffer = ev.buf, desc = "Rename" })
           map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = ev.buf, desc = "Code actions" })
         end,
       })
 
-      local lspconfig = require("lspconfig")
       local servers = {
-        "lua_ls",
+        {
+          "lua_ls",
+          settings = {
+            Lua = {
+              workspace = { checkThirdParty = false },
+              format = { enable = false },
+              completion = { callSnippet = "Replace" },
+            },
+          },
+        },
         "bashls",
         {
           "ts_ls",
-          root_dir = lspconfig.util.root_pattern("package.json"),
           single_file_support = false,
-        },
-        {
-          "denols",
-          root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+          settings = {
+            javascript = {
+              format = { enable = false },
+              suggest = { completeFunctionCalls = true },
+            },
+            typescript = {
+              format = { enable = false },
+              suggest = { completeFunctionCalls = true },
+            },
+          },
         },
         "html",
         "cssls",
-        "jsonls",
-        "yamlls",
-        -- "cssmodules_ls",
-        -- {
-        --   "tailwindcss",
-        --   root_dir = lspconfig.util.root_pattern("tailwind.config.js"),
-        -- },
-        "dockerls",
+        {
+          "jsonls",
+          settings = {
+            json = {
+              schemas = require("schemastore").json.schemas(),
+              validate = { enable = true },
+              format = { enable = false },
+            },
+          },
+        },
+        {
+          "yamlls",
+          settings = {
+            yaml = {
+              schemaStore = { enable = false, url = "" },
+              schemas = require("schemastore").yaml.schemas(),
+              format = { enable = false },
+              redhat = { telemetry = { enabled = false } },
+            },
+          },
+        },
         "taplo",
+        "tailwindcss",
+        "dockerls",
         "jedi_language_server",
         "terraformls",
-        "eslint",
         "biome",
         {
           "graphql",
@@ -86,6 +108,7 @@ return {
           },
         },
         "pbls",
+        "rust_analyzer",
       }
 
       local capabilities = require("blink.cmp").get_lsp_capabilities()
@@ -94,13 +117,14 @@ return {
         local lsp_type = type(lsp)
 
         if lsp_type == "string" then
-          lspconfig[lsp].setup({ capabilities = capabilities })
+          vim.lsp.config(lsp, { capabilities = capabilities })
         elseif lsp_type == "table" then
-          lspconfig[lsp[1]].setup({
+          vim.lsp.config(lsp[1], {
             filetypes = lsp.filetypes,
             root_dir = lsp.root_dir,
             single_file_support = lsp.single_file_support,
             capabilities = capabilities,
+            settings = lsp.settings,
           })
         end
       end
