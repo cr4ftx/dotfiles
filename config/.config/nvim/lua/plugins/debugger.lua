@@ -3,7 +3,6 @@ local icons = require("utils.signs")
 return {
   "mfussenegger/nvim-dap",
   dependencies = {
-    "antoinemadec/FixCursorHold.nvim",
     "williamboman/mason.nvim",
     {
       "theHamsta/nvim-dap-virtual-text",
