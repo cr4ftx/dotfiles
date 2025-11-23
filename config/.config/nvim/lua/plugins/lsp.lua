@@ -21,7 +21,7 @@ return {
       "williamboman/mason-lspconfig.nvim",
       "saghen/blink.cmp",
       "b0o/schemastore.nvim",
-      { "folke/neoconf.nvim", opts = {} },
+      -- { "folke/neoconf.nvim", opts = {} },
     },
     config = function()
       vim.diagnostic.config({
@@ -109,6 +109,7 @@ return {
         },
         "pbls",
         "rust_analyzer",
+        "prisma-language-server",
       }
 
       local capabilities = require("blink.cmp").get_lsp_capabilities()
