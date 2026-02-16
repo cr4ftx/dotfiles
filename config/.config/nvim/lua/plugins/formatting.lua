@@ -16,7 +16,7 @@ return {
     opts = {
       formatters_by_ft = {
         lua = { "stylua" },
-        python = { "black" },
+        -- python = { "black" },
         javascript = { "biome-check", "prettierd" },
         javascriptreact = { "biome-check", "prettierd" },
         typescript = { "biome-check", "prettierd" },
@@ -40,7 +40,7 @@ return {
         lsp_fallback = true,
       },
       default_format_opts = {
-        timeout_ms = 500,
+        timeout_ms = 1000,
         stop_after_first = true,
       },
     },
