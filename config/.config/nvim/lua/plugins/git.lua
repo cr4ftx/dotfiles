@@ -106,31 +106,6 @@ return {
     end,
   },
   {
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-    cmd = "Neogit",
-    keys = {
-      {
-        "<leader>gc",
-        function()
-          require("neogit").open({ "commit" })
-        end,
-        desc = "Open neogit commit",
-      },
-      {
-        "<leader>gg",
-        function()
-          require("neogit").open()
-        end,
-        desc = "Open neogit",
-      },
-    },
-    opts = {},
-  },
-  {
     "pwntester/octo.nvim",
     cmd = "Octo",
     dependencies = {

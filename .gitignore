@@ -4,3 +4,4 @@ config/.oh-my-zsh
 config/.tmux
 **/*/lazy-lock.json
 .gitconfig-work
+config/.config/nvim/snippets/
