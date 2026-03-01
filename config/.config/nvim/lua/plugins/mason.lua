@@ -29,13 +29,4 @@ return {
     -- https://github.com/jay-babu/mason-nvim-dap.nvim/blob/main/lua/mason-nvim-dap/mappings/source.lua
     opts = { ensure_installed = { "js" } },
   },
-  {
-    "zapling/mason-conform.nvim",
-    event = { "VeryLazy" },
-    dependencies = {
-      "williamboman/mason.nvim",
-      "stevearc/conform.nvim",
-    },
-    opts = {},
-  },
 }

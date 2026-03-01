@@ -99,6 +99,7 @@ return {
         "jedi_language_server",
         "terraformls",
         "biome",
+        "oxlint",
         {
           "graphql",
           filetypes = {
