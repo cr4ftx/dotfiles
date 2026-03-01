@@ -62,3 +62,5 @@ alias vim="nvim"
 
 autoload -Uz compinit
 compinit
+
+[[ -f ~/.env ]] && source ~/.env

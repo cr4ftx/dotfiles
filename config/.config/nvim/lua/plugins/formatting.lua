@@ -1,3 +1,20 @@
+local root_has_file = function(files, bufnr)
+  local root = vim.fs.root(bufnr or 0, files)
+  return root ~= nil
+end
+
+local javascript_formatter = function(bufnr)
+  if root_has_file({ "biome.json", "biome.jsonc" }, bufnr) then
+    return { "biome-check" }
+  end
+
+  if root_has_file({ ".oxfmtrc.json", ".oxfmtrc.jsonc" }, bufnr) then
+    return { "oxfmt" }
+  end
+
+  return { "prettierd" }
+end
+
 return {
   {
     "stevearc/conform.nvim",
@@ -17,19 +34,19 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         -- python = { "black" },
-        javascript = { "biome-check", "prettierd" },
-        javascriptreact = { "biome-check", "prettierd" },
-        typescript = { "biome-check", "prettierd" },
-        typescriptreact = { "biome-check", "prettierd" },
-        json = { "biome-check", "prettierd" },
-        jsonc = { "biome-check", "prettierd" },
-        yaml = { "biome-check", "prettierd" },
-        graphql = { "biome-check", "prettierd" },
-        html = { "prettierd" },
-        markdown = { "prettierd" },
-        css = { "biome-check", "prettierd" },
-        sass = { "prettierd" },
-        scss = { "prettierd" },
+        javascript = javascript_formatter,
+        javascriptreact = javascript_formatter,
+        typescript = javascript_formatter,
+        typescriptreact = javascript_formatter,
+        json = javascript_formatter,
+        jsonc = javascript_formatter,
+        yaml = javascript_formatter,
+        graphql = javascript_formatter,
+        html = javascript_formatter,
+        markdown = javascript_formatter,
+        css = javascript_formatter,
+        sass = javascript_formatter,
+        scss = javascript_formatter,
         sql = { "sql_formatter" },
         sh = { "beautysh" },
         bash = { "beautysh" },
@@ -37,7 +54,7 @@ return {
         proto = { "buf" },
       },
       format_on_save = {
-        lsp_fallback = true,
+        lsp_fallback = false,
       },
       default_format_opts = {
         timeout_ms = 1000,
