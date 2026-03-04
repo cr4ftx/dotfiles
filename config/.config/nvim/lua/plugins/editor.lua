@@ -170,8 +170,10 @@ return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    ft = { "markdown" },
-    opts = {},
+    ft = { "markdown", "Avante" },
+    opts = {
+      file_types = { "markdown", "Avante" },
+    },
   },
   {
     "folke/trouble.nvim",

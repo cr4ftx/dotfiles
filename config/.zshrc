@@ -59,6 +59,7 @@ fi
 alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
+alias p="pnpm"
 
 autoload -Uz compinit
 compinit
