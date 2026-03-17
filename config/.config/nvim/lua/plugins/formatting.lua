@@ -47,7 +47,7 @@ return {
         css = javascript_formatter,
         sass = javascript_formatter,
         scss = javascript_formatter,
-        sql = { "sql_formatter" },
+        sql = { "postgres_language_server" },
         sh = { "beautysh" },
         bash = { "beautysh" },
         zsh = { "beautysh" },

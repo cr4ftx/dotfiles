@@ -76,6 +76,7 @@ return {
           "jsonls",
           settings = {
             json = {
+              schemaDownload = { enable = false },
               schemas = require("schemastore").json.schemas(),
               validate = { enable = true },
               format = { enable = false },
@@ -85,11 +86,11 @@ return {
         {
           "yamlls",
           settings = {
+            redhat = { telemetry = { enabled = false } },
             yaml = {
               schemaStore = { enable = false, url = "" },
               schemas = require("schemastore").yaml.schemas(),
               format = { enable = false },
-              redhat = { telemetry = { enabled = false } },
             },
           },
         },
@@ -111,6 +112,7 @@ return {
         "pbls",
         "rust_analyzer",
         "prisma-language-server",
+        "postgres-language-server",
       }
 
       local capabilities = require("blink.cmp").get_lsp_capabilities()
