@@ -2,6 +2,8 @@ return {
   "yetone/avante.nvim",
   build = "make",
   version = false,
+  ---@module 'avante'
+  ---@type avante.Config
   opts = {
     instructions_file = "AGENTS.md",
     provider = "claude",
@@ -11,9 +13,26 @@ return {
     },
   },
   keys = {
-    "<leader>aa",
+    { "<leader>aa", "<cmd>AvanteAsk<cr>", desc = "avante: ask", mode = { "n", "v" } },
   },
-  cmd = "Avante",
+  cmd = {
+    "AvanteAsk",
+    "AvanteBuild",
+    "AvanteChat",
+    "AvanteChatNew",
+    "AvanteClear",
+    "AvanteEdit",
+    "AvanteFocus",
+    "AvanteHistory",
+    "AvanteModels",
+    "AvanteRefresh",
+    "AvanteShowRepoMap",
+    "AvanteStop",
+    "AvanteSwitchInputProvider",
+    "AvanteSwitchProvider",
+    "AvanteSwitchSelectorProvider",
+    "AvanteToggle",
+  },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
