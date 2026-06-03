@@ -49,7 +49,7 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
-    version = "0.1.6",
+    version = "master",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "folke/trouble.nvim",
@@ -94,54 +94,36 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = { "neovim-treesitter/treesitter-parser-registry" },
+    lazy = false,
     build = ":TSUpdate",
-    version = false,
-    event = { "BufReadPre", "BufNewFile" },
     config = function()
-      require("nvim-treesitter.configs").setup({
-        auto_install = true,
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = false,
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = {
+          "markdown",
+          "yaml",
+          "toml",
+          "json",
+          "css",
+          "graphql",
+          "prisma",
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "lua",
+          "bash",
+          "sh",
+          "dockerfile",
+          "proto",
+          "python",
+          "html",
         },
-        textobjects = {
-          select = {
-            enable = true,
-            lookahead = true,
-            keymaps = {
-              ["aa"] = "@parameter.outer",
-              ["ia"] = "@parameter.inner",
-              ["af"] = "@function.outer",
-              ["if"] = "@function.inner",
-              ["ac"] = "@class.outer",
-              ["ic"] = "@class.inner",
-            },
-            selection_modes = {
-              ["@parameter.outer"] = "v",
-              ["@function.outer"] = "V",
-              ["@class.outer"] = "V",
-            },
-            include_surrounding_whitespace = true,
-          },
-          swap = {
-            enable = true,
-            swap_next = {
-              ["<leader>j"] = "@function.outer",
-              -- ["<leader>a"] = "@parameter.inner",
-            },
-            swap_previous = {
-              ["<leader>k"] = "@function.outer",
-              -- ["<leader>A"] = "@parameter.inner",
-            },
-          },
-        },
+        callback = function()
+          vim.treesitter.start()
+        end,
       })
     end,
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = "nvim-treesitter/nvim-treesitter",
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
@@ -151,16 +133,13 @@ return {
   {
     "windwp/nvim-ts-autotag",
     ft = {
-      "javascript",
       "javascriptreact",
       "markdown",
-      "typescript",
       "typescriptreact",
       "xml",
       "html",
     },
     opts = {},
-    dependencies = "nvim-treesitter/nvim-treesitter",
   },
   {
     "norcalli/nvim-colorizer.lua",
@@ -258,14 +237,6 @@ return {
         filetypes_denylist = disable_filetypes,
       })
     end,
-  },
-  {
-    "Wansmer/treesj",
-    keys = {
-      { "<space>m", desc = "Toggle splitjoin" },
-    },
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    opts = {},
   },
   {
     "stevearc/dressing.nvim",

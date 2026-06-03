@@ -47,14 +47,13 @@ return {
         css = javascript_formatter,
         sass = javascript_formatter,
         scss = javascript_formatter,
-        sql = { "postgres_language_server" },
         sh = { "beautysh" },
         bash = { "beautysh" },
         zsh = { "beautysh" },
         proto = { "buf" },
       },
       format_on_save = {
-        lsp_fallback = false,
+        lsp_fallback = true,
       },
       default_format_opts = {
         timeout_ms = 1000,
