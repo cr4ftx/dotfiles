@@ -7,6 +7,16 @@ return {
   opts = {
     instructions_file = "AGENTS.md",
     provider = "claude",
+    providers = {
+      ["claude/sonnet"] = {
+        __inherited_from = "claude",
+        model = "claude-sonnet-4-5",
+      },
+      ["claude/opus"] = {
+        __inherited_from = "claude",
+        model = "claude-opus-4-8",
+      },
+    },
     input = {
       provider = "dressing",
       provider_opts = {},
