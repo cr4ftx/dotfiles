@@ -47,6 +47,7 @@ return {
         css = javascript_formatter,
         sass = javascript_formatter,
         scss = javascript_formatter,
+        vue = javascript_formatter,
         sh = { "beautysh" },
         bash = { "beautysh" },
         zsh = { "beautysh" },

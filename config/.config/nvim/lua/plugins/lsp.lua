@@ -1,6 +1,16 @@
 local icons = require("utils.signs")
 local map = require("utils.map")
 
+local vue_language_server_path = vim.fn.stdpath("data")
+  .. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
+
+local vue_plugin = {
+  name = "@vue/typescript-plugin",
+  location = vue_language_server_path,
+  languages = { "vue" },
+  configNamespace = "typescript",
+}
+
 return {
   {
     "folke/lazydev.nvim",
@@ -59,6 +69,11 @@ return {
         {
           "ts_ls",
           single_file_support = false,
+          init_options = {
+            plugins = { vue_plugin },
+            maxTsServerMemory = 8192,
+          },
+          filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
           settings = {
             javascript = {
               format = { enable = false },
@@ -99,8 +114,6 @@ return {
         "dockerls",
         "jedi_language_server",
         "terraformls",
-        "biome",
-        "oxlint",
         {
           "graphql",
           filetypes = {
@@ -113,6 +126,26 @@ return {
         "rust_analyzer",
         "prisma-language-server",
         "postgres-language-server",
+        {
+          "vue_ls",
+          -- `@vue/language-server` resolves TypeScript with `require('typescript')`
+          -- from its own install, where Mason pins `typescript@^7` (the native/Go
+          -- preview with no JS API, so `ts.server.protocol` is nil and it crashes).
+          -- Pass `--tsdk` explicitly: prefer the project's TypeScript (matching how
+          -- `ts_ls` resolves it), else fall back to the JS TypeScript bundled with
+          -- `typescript-language-server`.
+          cmd = function(dispatchers, config)
+            local root = config.root_dir or vim.fn.getcwd()
+            local project_tsdk = root .. "/node_modules/typescript/lib"
+            local tsdk = vim.uv.fs_stat(project_tsdk) and project_tsdk
+              or vim.fn.stdpath("data")
+                .. "/mason/packages/typescript-language-server/node_modules/typescript/lib"
+            return vim.lsp.rpc.start(
+              { "vue-language-server", "--stdio", "--tsdk=" .. tsdk },
+              dispatchers
+            )
+          end,
+        },
       }
 
       local capabilities = require("blink.cmp").get_lsp_capabilities()
@@ -124,11 +157,14 @@ return {
           vim.lsp.config(lsp, { capabilities = capabilities })
         elseif lsp_type == "table" then
           vim.lsp.config(lsp[1], {
+            cmd = lsp.cmd,
             filetypes = lsp.filetypes,
             root_dir = lsp.root_dir,
             single_file_support = lsp.single_file_support,
             capabilities = capabilities,
             settings = lsp.settings,
+            on_init = lsp.on_init,
+            init_options = lsp.init_options,
           })
         end
       end
