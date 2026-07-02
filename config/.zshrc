@@ -21,7 +21,7 @@ export FZF_CTRL_T_OPTS=" --preview 'fzf-preview.sh {}'"
 
 # NVM config https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/nvm
 zstyle ':omz:plugins:nvm' lazy yes
-zstyle ':omz:plugins:nvm' lazy-cmd git nvim
+zstyle ':omz:plugins:nvm' lazy-cmd git nvim claude
 zstyle ':omz:plugins:nvm' autoload yes
 # YARN config https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/yarn
 zstyle ':omz:plugins:yarn' global-path no
@@ -29,31 +29,31 @@ zstyle ':omz:plugins:yarn' global-path no
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
 
 plugins=(
-    sudo
-    vi-mode
-    brew # always place brew before tmux if tmux is installed with brew
-    tmux
-    fzf
-    fzf-tab
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-    git
-    nvm
-    yarn
-    starship
-    zoxide
-    gpg-agent
-    gh
-    eza
+  sudo
+  vi-mode
+  brew # always place brew before tmux if tmux is installed with brew
+  tmux
+  fzf
+  fzf-tab
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  git
+  nvm
+  yarn
+  starship
+  zoxide
+  gpg-agent
+  gh
+  eza
 )
 
 source $ZSH/oh-my-zsh.sh
 
-if command -v bat &> /dev/null; then
-    export MANPAGER="sh -c 'col -bx | bat -l man -p'" # set better man page with bat
-    # some aliases
-    alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
-    alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+if command -v bat &>/dev/null; then
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'" # set better man page with bat
+  # some aliases
+  alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+  alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 fi
 
 alias v="nvim"

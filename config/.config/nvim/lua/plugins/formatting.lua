@@ -48,9 +48,9 @@ return {
         sass = javascript_formatter,
         scss = javascript_formatter,
         vue = javascript_formatter,
-        sh = { "beautysh" },
-        bash = { "beautysh" },
-        zsh = { "beautysh" },
+        sh = { "shfmt" },
+        bash = { "shfmt" },
+        zsh = { "shfmt" },
         proto = { "buf" },
       },
       format_on_save = {
