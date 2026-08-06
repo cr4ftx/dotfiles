@@ -49,7 +49,7 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
-    version = "master",
+    branch = "master",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "folke/trouble.nvim",
