@@ -1,5 +1,6 @@
 local icons = require("utils.signs")
 
+---@type LazySpec
 return {
   "mfussenegger/nvim-dap",
   dependencies = {
@@ -51,8 +52,8 @@ return {
 
     vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
-    for name, sign in pairs(icons.dap) do
-      sign = type(sign) == "table" and sign or { sign }
+    for name, icon in pairs(icons.dap) do
+      local sign = type(icon) == "table" and icon or { icon }
       vim.fn.sign_define("Dap" .. name, {
         text = sign[1],
         texthl = sign[2] or "DiagnosticInfo",

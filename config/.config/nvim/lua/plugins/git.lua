@@ -1,4 +1,5 @@
 local map = require("utils.map")
+---@type LazySpec
 return {
   {
     "sindrets/diffview.nvim",

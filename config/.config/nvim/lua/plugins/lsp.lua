@@ -11,6 +11,7 @@ local vue_plugin = {
   configNamespace = "typescript",
 }
 
+---@type LazySpec
 return {
   {
     "folke/lazydev.nvim",
@@ -21,6 +22,8 @@ return {
           path = "${3rd}/luv/library",
           words = { "vim%.uv" },
         },
+        { path = "lazy.nvim", words = { "LazySpec" } },
+        { path = "snacks.nvim", words = { "Snacks" } },
       },
     },
   },

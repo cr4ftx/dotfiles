@@ -15,6 +15,7 @@ local javascript_formatter = function(bufnr)
   return { "prettierd" }
 end
 
+---@type LazySpec
 return {
   {
     "stevearc/conform.nvim",
@@ -30,6 +31,8 @@ return {
         desc = "Format buffer",
       },
     },
+    ---@module 'conform'
+    ---@type conform.setupOpts
     opts = {
       formatters_by_ft = {
         lua = { "stylua" },

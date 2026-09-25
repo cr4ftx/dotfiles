@@ -1,8 +1,11 @@
+---@type LazySpec
 return {
   {
     "williamboman/mason.nvim",
     event = { "VeryLazy" },
     build = ":MasonUpdate",
+    ---@module 'mason'
+    ---@type MasonSettings
     opts = {
       ui = {
         icons = {
@@ -17,6 +20,8 @@ return {
     "williamboman/mason-lspconfig.nvim",
     event = { "VeryLazy" },
     dependencies = { "williamboman/mason.nvim" },
+    ---@module 'mason-lspconfig'
+    ---@type MasonLspconfigSettings
     opts = { automatic_installation = true },
   },
   {

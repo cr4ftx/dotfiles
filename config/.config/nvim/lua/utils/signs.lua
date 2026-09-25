@@ -1,4 +1,5 @@
 return {
+  ---@type table<string, string|string[]>
   dap = {
     Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
     Breakpoint = " ",

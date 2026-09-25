@@ -1,5 +1,6 @@
 ---@diagnostic disable: missing-fields
 
+---@type LazySpec
 return {
   {
     "nvim-neotest/neotest",

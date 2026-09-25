@@ -1,5 +1,6 @@
 local icons = require("utils.signs")
 
+---@type LazySpec
 return {
   {
     "nvim-tree/nvim-tree.lua",
@@ -16,6 +17,8 @@ return {
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
     end,
+    ---@module 'nvim-tree'
+    ---@type nvim_tree.config
     opts = {
       hijack_cursor = true,
       hijack_unnamed_buffer_when_opening = true,
@@ -24,7 +27,7 @@ return {
       respect_buf_cwd = true,
       update_focused_file = {
         enable = true,
-        update_root = true,
+        update_root = { enable = true },
       },
       diagnostics = {
         enable = true,
@@ -207,6 +210,8 @@ return {
     "akinsho/bufferline.nvim",
     version = "*",
     event = { "BufReadPre", "BufNewFile" },
+    ---@module 'bufferline'
+    ---@type bufferline.UserConfig
     opts = {
       options = {
         mode = "tabs",
@@ -233,6 +238,8 @@ return {
 
     "folke/noice.nvim",
     event = "VeryLazy",
+    ---@module 'noice'
+    ---@type NoiceConfig
     opts = {
       lsp = {
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**

@@ -20,7 +20,8 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS=" --preview 'fzf-preview.sh {}'"
 
 # NVM config https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/nvm
-zstyle ':omz:plugins:nvm' lazy yes
+# Claude Code's shell snapshot drops compinit state, so lazy nvm completion breaks compdef there
+[[ -n $CLAUDECODE ]] || zstyle ':omz:plugins:nvm' lazy yes
 zstyle ':omz:plugins:nvm' lazy-cmd git nvim claude
 zstyle ':omz:plugins:nvm' autoload yes
 # YARN config https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/yarn
@@ -60,8 +61,5 @@ alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
 alias p="pnpm"
-
-autoload -Uz compinit
-compinit
 
 [[ -f ~/.env ]] && source ~/.env

@@ -13,6 +13,7 @@ local disable_filetypes = {
   "mason",
 }
 
+---@type LazySpec
 return {
   {
     "glepnir/dashboard-nvim",
@@ -129,6 +130,8 @@ return {
   {
     "nvim-treesitter/nvim-treesitter-context",
     event = { "BufReadPre", "BufNewFile" },
+    ---@module 'treesitter-context'
+    ---@type TSContext.UserConfig
     opts = {},
   },
   {
@@ -151,14 +154,13 @@ return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    ft = { "markdown", "Avante" },
-    opts = {
-      file_types = { "markdown", "Avante" },
-    },
+    ft = { "markdown" },
   },
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    ---@module 'trouble'
+    ---@type trouble.Config
     opts = {
       auto_close = true,
       signs = {
@@ -229,6 +231,8 @@ return {
   {
     "folke/persistence.nvim",
     event = "BufReadPre",
+    ---@module 'persistence'
+    ---@type Persistence.Config
     opts = {},
   },
   {
