@@ -57,11 +57,11 @@ EOF
 update_tag() {
     local LATEST_TAG=${LATEST_TAG:-false}
     if [[ "$LATEST_TAG" == "true" ]]; then
-        pushd "$1" >& /dev/null
+        pushd "$1" >&/dev/null
         git fetch --tags origin
         local commit=$(git rev-list --tags --max-count=1)
         git checkout $(git describe --abbrev=0 --tags --match "v[0-9]*" $commit)
-        popd >& /dev/null
+        popd >&/dev/null
     fi
 
 }
@@ -85,6 +85,7 @@ link_dotfiles() {
     info "Linking config files"
     mkdir -p \
         ~/.config \
+        ~/.claude/skills \
         ~/.local/share/fonts \
         ~/.tmux/plugins
     stow --verbose 2 --dotfiles --dir "$DOTFILES_DIR" --target "$HOME" config
@@ -107,7 +108,7 @@ main() {
     install_plugin "Oh My Zsh" ~/.oh-my-zsh https://github.com/ohmyzsh/ohmyzsh
     install_plugin "ZSH autosuggestions" ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions
     install_plugin "ZSH syntax highlighting" ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting.git
-    install_plugin "FZF tab"  ~/.oh-my-zsh/custom/plugins/fzf-tab https://github.com/Aloxaf/fzf-tab
+    install_plugin "FZF tab" ~/.oh-my-zsh/custom/plugins/fzf-tab https://github.com/Aloxaf/fzf-tab
     LATEST_TAG=true install_plugin "TPM" ~/.tmux/plugins/tpm https://github.com/tmux-plugins/tpm
     LATEST_TAG=true install_plugin "NVM" ~/.nvm https://github.com/nvm-sh/nvm.git
 
