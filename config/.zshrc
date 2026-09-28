@@ -50,6 +50,11 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# oh-my-zsh keeps 50k lines in memory but only saves 10k to disk
+HISTSIZE=100000
+SAVEHIST=100000
+setopt HIST_IGNORE_ALL_DUPS
+
 if command -v bat &>/dev/null; then
   export MANPAGER="sh -c 'col -bx | bat -l man -p'" # set better man page with bat
   # some aliases
