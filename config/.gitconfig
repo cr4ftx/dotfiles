@@ -12,10 +12,26 @@
   diffFilter = delta --color-only
 
 [merge]
-  conflictstyle = diff3
+  conflictstyle = zdiff3
 
 [diff]
   colorMoved = default
+  algorithm = histogram
+
+[init]
+  defaultBranch = main
+
+[push]
+  autoSetupRemote = true
+
+[fetch]
+  prune = true
+
+[rerere]
+  enabled = true
+
+[branch]
+  sort = -committerdate
 
 [includeIf "gitdir:~/work/"]
   path = ~/.gitconfig-work

@@ -2,4 +2,4 @@
   name = Cr4ftx
   email = swann.castel@hotmail.fr
 [core]
-  sshCommand = ssh -i ~/.ssh/id_rsa_personal
+  sshCommand = ssh -i ~/.ssh/id_rsa_personal -o IdentitiesOnly=yes
