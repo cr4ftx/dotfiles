@@ -1,6 +1,6 @@
 ---
 name: workflow
-description: "Start work on a ticket ('start ARS-123', a Linear ID or URL) or any task that writes files in a git repo: implement, fix, refactor. Covers the worktree and branch name, TDD slice by slice, conventional commits, the checks that gate done, a code review before pushing, the draft PR, watching CI, and removing the worktree once the work is signed off."
+description: "Start work on a ticket ('start ABC-123', a Linear ID or URL) or any task that writes files in a git repo: implement, fix, refactor. Covers the worktree and branch name, TDD slice by slice, conventional commits, the checks that gate done, a code review before pushing, the draft PR, watching CI, and removing the worktree once the work is signed off."
 ---
 
 Never edit the repo's currently checked-out branch, especially `main`/`master`. Work happens on a new branch in a new worktree, is built slice by slice test-first, and lands as a reviewed draft PR with green CI.
@@ -17,7 +17,7 @@ Stay in place for: read-only questions, exploration and search, a single-command
 
 The name comes from Linear when a ticket exists, and is used verbatim.
 
-1. **Ticket referenced or identifiable** — I mention an ID like `ARS-123`, paste a Linear URL, or the task clearly maps to an existing issue: fetch it with `mcp__linear-server__get_issue` and take its `gitBranchName` exactly as returned (e.g. `swanncastel/ars-123-fix-login-redirect`). Never reconstruct it, and only shorten it under step 2's length cap.
+1. **Ticket referenced or identifiable** — I mention an ID like `ABC-123`, paste a Linear URL, or the task clearly maps to an existing issue: fetch it with `mcp__linear-server__get_issue` and take its `gitBranchName` exactly as returned (e.g. `swanncastel/abc-123-fix-login-redirect`). Never reconstruct it, and only shorten it under step 2's length cap.
 2. **No ticket** — ask me whether to create one, and wait.
    - Yes → create the Linear issue, then use its `gitBranchName` as in (1).
    - No → `swanncastel/<slug>`, where `<slug>` is a short kebab-case description of the task.
@@ -32,7 +32,7 @@ Keep the ticket text in context. Step 5 hands it to the review's Spec axis, whic
 
 Use `EnterWorktree` with the branch name as `name`, or `Agent` with `isolation: "worktree"` when delegating.
 
-`name` is capped at 64 characters. If the branch name is longer, cut it at the last `-` that keeps it within 64 and pass that. The `swanncastel/ars-123-` prefix survives the cut, so the Linear integration still matches on the ticket ID.
+`name` is capped at 64 characters. If the branch name is longer, cut it at the last `-` that keeps it within 64 and pass that. The `swanncastel/abc-123-` prefix survives the cut, so the Linear integration still matches on the ticket ID.
 
 Never fall back to `git worktree add`. It ignores `.worktreeinclude`, so the worktree comes up without the gitignored files it lists.
 
@@ -60,7 +60,7 @@ Let what a slice teaches you reshape the ones still ahead. If the plan stops mat
 Conventional Commits, with the Linear ID as a bare suffix on the subject line — no brackets, no parens:
 
 ```
-fix(auth): redirect to intended page after login ARS-123
+fix(auth): redirect to intended page after login ABC-123
 ```
 
 - `feat` / `fix` / `chore` / `refactor` / `docs` / `test`, optional scope in parens.

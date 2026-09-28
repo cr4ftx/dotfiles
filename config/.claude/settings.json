@@ -227,7 +227,7 @@
   "disableArtifact": true,
   "statusLine": {
     "type": "command",
-    "command": "npx -y ccstatusline@latest",
+    "command": "npx -y ccstatusline@2.2.30",
     "padding": 0,
     "refreshInterval": 10
   },
