@@ -81,22 +81,22 @@ return {
     },
   },
   {
-    "utilyre/barbecue.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    version = "*",
-    dependencies = {
-      "SmiteshP/nvim-navic",
-      "nvim-tree/nvim-web-devicons",
+    "SmiteshP/nvim-navic",
+    lazy = true,
+    opts = {
+      lsp = { auto_attach = true },
+      highlight = true,
     },
-    config = true,
   },
   {
     "nvim-lualine/lualine.nvim",
     event = { "BufReadPre", "BufNewFile" },
+    dependencies = { "SmiteshP/nvim-navic" },
     opts = {
       options = {
         theme = "tokyonight",
         globalstatus = true,
+        disabled_filetypes = { winbar = { "dashboard" } },
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
       },
@@ -135,6 +135,12 @@ return {
         lualine_y = { "progress" },
         lualine_z = { "location" },
       },
+      winbar = {
+        lualine_c = { "filename", "navic" },
+      },
+      inactive_winbar = {
+        lualine_c = { "filename" },
+      },
       extensions = {
         "nvim-tree",
         "quickfix",
@@ -148,7 +154,7 @@ return {
           },
           filetypes = {
             "TelescopePrompt",
-            "DressingInput",
+            "snacks_input",
           },
         },
         {
@@ -194,7 +200,7 @@ return {
         excluded_filetypes = {
           "dropbar_menu",
           "dropbar_menu_fzf",
-          "DressingInput",
+          "snacks_input",
           "cmp_docs",
           "cmp_menu",
           "noice",

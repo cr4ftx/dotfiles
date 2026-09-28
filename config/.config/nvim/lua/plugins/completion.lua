@@ -26,9 +26,6 @@ return {
         },
       },
       fuzzy = { implementation = "prefer_rust_with_warning" },
-      enabled = function()
-        return not vim.tbl_contains({ "DressingInput" }, vim.bo.filetype)
-      end,
     },
     opts_extend = { "sources.default" },
   },

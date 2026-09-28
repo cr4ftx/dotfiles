@@ -6,8 +6,7 @@ local disable_filetypes = {
   "NvimTree",
   "dashboard",
   "DiffviewFiles",
-  "DressingInput",
-  "DressingSelect",
+  "snacks_input",
   "TelescopePrompt",
   "lazy",
   "mason",
@@ -54,7 +53,17 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "folke/trouble.nvim",
+      "nvim-telescope/telescope-ui-select.nvim",
     },
+    init = function()
+      -- Telescope is lazy-loaded, so load it on the first vim.ui.select call;
+      -- the ui-select extension then replaces this stub
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.select = function(...)
+        require("lazy").load({ plugins = { "telescope.nvim" } })
+        return vim.ui.select(...)
+      end
+    end,
     keys = {
       { "<C-p>", "<cmd>Telescope find_files<cr>", desc = "Find files" },
       { "<C-g>", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
@@ -90,7 +99,11 @@ return {
             hidden = true,
           },
         },
+        extensions = {
+          ["ui-select"] = { require("telescope.themes").get_dropdown() },
+        },
       })
+      telescope.load_extension("ui-select")
     end,
   },
   {
@@ -245,15 +258,6 @@ return {
     end,
   },
   {
-    "stevearc/dressing.nvim",
-    opts = {
-      input = {
-        insert_only = false,
-      },
-    },
-    event = "VeryLazy",
-  },
-  {
     "folke/which-key.nvim",
     event = "VeryLazy",
     config = function()
@@ -280,6 +284,7 @@ return {
     opts = {
       indent = {},
       image = {},
+      input = {},
       scroll = {
         animate = {
           duration = { step = 15, total = 100 },
