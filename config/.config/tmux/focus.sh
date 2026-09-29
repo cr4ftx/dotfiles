@@ -7,8 +7,8 @@ set -euo pipefail
 
 client=$1
 
-target=$(tmux show -gv @notify_target 2>/dev/null || true)
+target=$(tmux show -gqv @notify_target)
 [[ -n $target ]] || exit 0
 
 tmux set -gu @notify_target
-tmux switch-client -c "$client" -t "$target" \; select-window -t "$target" \; select-pane -t "$target"
+tmux switch-client -c "$client" -t "$target"
