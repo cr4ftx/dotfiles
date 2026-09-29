@@ -202,22 +202,12 @@
         ]
       }
     ],
-    "Notification": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "kitten notify --only-print-escape-code -a 'Claude Code' -i \"claude-${PWD##*/}\" \"Claude · ${PWD##*/}\" \"$(jq -r .message)\" > /dev/$(ps -o tty= -p $PPID | tr -d ' ')"
-          }
-        ]
-      }
-    ],
     "Stop": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "kitten notify --only-print-escape-code -a 'Claude Code' -i \"claude-${PWD##*/}\" \"Claude · ${PWD##*/}\" 'Done' > /dev/$(ps -o tty= -p $PPID | tr -d ' ')"
+            "command": "printf '\\a' > /dev/$(ps -o tty= -p $PPID | tr -d ' ')"
           }
         ]
       }
@@ -233,11 +223,12 @@
   },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
-    "mattpocock-skills@claude-plugins-official": true
+    "mattpocock-skills@claude-plugins-official": true,
+    "slack@anthropic-plugin-directory": true
   },
   "theme": "dark",
   "editorMode": "vim",
-  "preferredNotifChannel": "auto",
+  "preferredNotifChannel": "terminal_bell",
   "autoCompactEnabled": true,
   "switchModelsOnFlag": true,
   "remoteControlAtStartup": true,
