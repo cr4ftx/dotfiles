@@ -8,6 +8,8 @@ set -euo pipefail
 client_tty=$1
 pane=$2
 
+tmux set -g @notify_target "$pane"
+
 title=$(tmux display -p -t "$pane" '#{session_name}:#{window_name}')
 body=$(tmux display -p -t "$pane" '#{pane_title}')
 
