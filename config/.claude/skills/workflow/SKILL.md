@@ -15,24 +15,30 @@ Stay in place for: read-only questions, exploration and search, a single-command
 
 ## 1. Settle the branch name first
 
-The name comes from Linear when a ticket exists, and is used verbatim.
+The branch is `swanncastel/<slug>`, where `<slug>` is short and kebab-case.
 
-1. **Ticket referenced or identifiable** — I mention an ID like `ABC-123`, paste a Linear URL, or the task clearly maps to an existing issue: fetch it with `mcp__linear-server__get_issue` and take its `gitBranchName` exactly as returned (e.g. `swanncastel/abc-123-fix-login-redirect`). Never reconstruct it, and only shorten it under step 2's length cap.
+1. **Ticket referenced or identifiable** — I mention an ID like `ABC-123`, paste a Linear URL, or the task clearly maps to an existing issue: fetch it with `mcp__linear-server__get_issue` and infer the slug from it, starting with the lowercased ID: `swanncastel/abc-123-fix-login-redirect`.
 2. **No ticket** — ask me whether to create one, and wait.
-   - Yes → create the Linear issue, then use its `gitBranchName` as in (1).
-   - No → `swanncastel/<slug>`, where `<slug>` is a short kebab-case description of the task.
+   - Yes → create the Linear issue, then infer the slug from it as in (1).
+   - No → infer the slug from the conversation: `swanncastel/fix-login-redirect`.
 
 With a ticket, move it to **In Progress** with `mcp__linear-server__save_issue` before going further — unless it's already there or further along (In Review, Done). The team's status may be named differently; check `mcp__linear-server__list_issue_statuses` for its `started`-type status rather than guessing.
 
-That's the last manual status change. From here the Linear↔GitHub integration moves the ticket off the PR lifecycle (matched by `gitBranchName`) — never set In Review or Done yourself.
+That's the last manual status change. From here the Linear↔GitHub integration moves the ticket off the PR lifecycle (matched by the ticket ID in the branch name) — never set In Review or Done yourself.
 
 Keep the ticket text in context. Step 5 hands it to the review's Spec axis, which has no way to fetch it on its own.
 
 ## 2. Enter the worktree
 
-Use `EnterWorktree` with the branch name as `name`, or `Agent` with `isolation: "worktree"` when delegating.
+Use `EnterWorktree`, or `Agent` with `isolation: "worktree"` when delegating, with the slug from step 1 as `name`, within 64 characters.
 
-`name` is capped at 64 characters. If the branch name is longer, cut it at the last `-` that keeps it within 64 and pass that. The `swanncastel/abc-123-` prefix survives the cut, so the Linear integration still matches on the ticket ID.
+The tool picks its own branch name, so the first command inside the worktree, before any commit, renames it to step 1's name:
+
+```
+git branch -m swanncastel/<slug>
+```
+
+Then check that `git branch --show-current` prints `swanncastel/<slug>`. When delegating with `isolation: "worktree"`, make the rename the first step in the agent's prompt.
 
 Never fall back to `git worktree add`. It ignores `.worktreeinclude`, so the worktree comes up without the gitignored files it lists.
 
@@ -65,7 +71,7 @@ fix(auth): redirect to intended page after login ABC-123
 
 - `feat` / `fix` / `chore` / `refactor` / `docs` / `test`, optional scope in parens.
 - No ticket → no suffix, just the conventional subject.
-- Body is optional and explains *why*, not what.
+- Body is optional and explains _why_, not what.
 - One commit per slice, plus any logical chunk in between. Don't ask first.
 
 ## 5. Verify
@@ -76,7 +82,7 @@ fix(auth): redirect to intended page after login ABC-123
 
 - **Monorepo**: run the scripts of the package(s) actually changed, not the whole workspace, unless only a root script exists.
 - No matching script → fall back to what the config implies: `tsconfig.json` → `tsc --noEmit`; an eslint/biome/prettier config → that tool on the changed files.
-- No script *and* no config → skip that check, and say which one you skipped and why. Don't invent a command.
+- No script _and_ no config → skip that check, and say which one you skipped and why. Don't invent a command.
 
 A failing check gets fixed, or gets reported plainly as failing. Neither one is silent.
 

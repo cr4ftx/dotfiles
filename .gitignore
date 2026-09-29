@@ -5,3 +5,4 @@ config/.tmux
 **/*/lazy-lock.json
 .gitconfig-work
 config/.config/nvim/snippets/
+.claude
